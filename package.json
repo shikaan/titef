@@ -1,0 +1,11 @@
+{
+  "name": "titef",
+  "version": "0.0.1",
+  "description": "Tiny Test Framework",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
+  "license": "ISC"
+}
