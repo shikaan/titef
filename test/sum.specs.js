@@ -15,15 +15,26 @@ suite('Sum', () => {
     })
 
     spec('should throw first argument', () => {
-        assert.throws(sum.bind(this, 'foo', 2), TypeError);
+        assert.throws(() => {
+            sum('foo', 2);
+        }, TypeError);
     })
 
     spec('should fail second argument', () => {
-        assert.throws(sum.bind(this, 1, 'bar'), TypeError);
+        assert.throws(() => {
+            sum(1, 'bar');
+        }, TypeError);
     })
 
-    spec('testing error handling', () => {
-        assert.throws(sum.bind(this, 1, '3'), TypeError);
+    spec('testing assertion failure', () => {
+        assert.throws(() => {
+            sum(1, 3);
+        }, TypeError);
+    })
+
+    spec('testing unhandled error', () => {
+        throw new Error('Unhandled exception')
+        assert(true);
     })
 
     xspec('ignored', () => {
