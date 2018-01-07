@@ -4,12 +4,12 @@ Tiny test framework for testing newbies.
 1. It has everything you need in most of the cases in an incredibly small size;
 2. It has an almost flat learning curve if you're already familiar with other testing frameworks
 like Mocha or Jasmine;
-3. (opinionated) It has an almost flat learning curve even though you're not familiar with 
+3. (opinionated) It has an almost flat learning curve even though you're not familiar with
 other testing technologies but you're familiar with ES6+;
 4. It's deadly simple. You can read the source and understand how it works in an hour;
 
 ## Getting started
-Titef is completely agnostic regarding te assertion library you want to use, as soon as 
+Titef is completely agnostic regarding te assertion library you want to use, as soon as
 it returns an `AssertionError` when an assertion fails.
 
 For this introduction we'll use Node's `assert`.
@@ -26,11 +26,11 @@ const sum = (a, b) => {
     const saneA = Number.parseInt(a, 10);
     const saneB = Number.parseInt(b, 10);
 
-    if(isNaN(saneA)) {
+    if(Number.isNaN(saneA)) {
         throw new TypeError('First argument is not number')
     }
 
-    if(isNaN(saneB)) {
+    if(Number.isNaN(saneB)) {
         throw new TypeError('Second argument is not number')
     }
 
@@ -59,7 +59,7 @@ suite('Sum', () => {
         }, TypeError);
     })
 
-    // if you want to temporarly exclude certain specs, you can use the `xspec` method 
+    // if you want to temporarly exclude certain specs, you can use the `xspec` method
     xspec('ignored', () => {
         // whatever
     })
@@ -75,7 +75,7 @@ $ node test/sum.specs.js
 
 ### Recipe #2: Async function with promises
 
-Suppose you have an async function which returns a `Promise`. 
+Suppose you have an async function which returns a `Promise`.
 
 ```javascript
 const asyncSum = (a, b) => {
@@ -83,11 +83,11 @@ const asyncSum = (a, b) => {
         const saneA = Number.parseInt(a, 10);
         const saneB = Number.parseInt(b, 10);
 
-        if(isNaN(saneA)) {
+        if(Number.isNaN(saneA)) {
             reject('First argument is not number')
         }
 
-        if(isNaN(saneB)) {
+        if(Number.isNaN(saneB)) {
             reject('Second argument is not number')
         }
 
@@ -96,7 +96,7 @@ const asyncSum = (a, b) => {
 }
 ```
 
-Then what you need to do is create a test file, for instance `sumAsync.specs.js` (if 
+Then what you need to do is create a test file, for instance `sum-async.specs.js` (if
 you're wondering what `spec` and `suite` do, please go to the preceding recipe)
 
 ```javascript
@@ -107,9 +107,9 @@ const asyncSum = require('./fixtures/asyncSum');
 
 suite('SumAsync', () => {
     // Use async keyword if calling an async function
-    spec('should sum two numbers', async () => { 
+    spec('should sum two numbers', async () => {
         const result = await asyncSum(2, 3);
-        
+
         assert.deepEqual(result, 5);
     })
 
@@ -117,7 +117,7 @@ suite('SumAsync', () => {
         const fn = async () => {
             await asyncSum('foo', 2);
         }
-        
+
         // And remember to use `throwsAsync` instead of `throws`, here
         await assert.throwsAsync(fn, /First argument is not number/);
     })
@@ -137,14 +137,14 @@ $ node test/sumAsync.specs.js
 
 ### Recipe #3: Async function with callback
 
-Suppose you have an async function with a callback (seriously?!). What we'll be doing 
-is simply using the `promisify` method in Node `util`library to transform that function 
-to a Promise based async function and then use what we already did in Recipe #2. 
+Suppose you have an async function with a callback (seriously?!). What we'll be doing
+is simply using the `promisify` method in Node `util`library to transform that function
+to a Promise based async function and then use what we already did in Recipe #2.
 
 Let's take for example Node's `fs.readFile`.
 
-Then what you need to do is create a test file, for instance `asyncNode.specs.js` (if 
-you'll be wondering what `spec` and `suite` do, please go to the first recipe; if you'll 
+Then what you need to do is create a test file, for instance `async-node.specs.js` (if
+you'll be wondering what `spec` and `suite` do, please go to the first recipe; if you'll
 be wondering how to use `async` go to the second one).
 
 ```javascript
@@ -152,7 +152,7 @@ const { readFile } = require('fs');
 const { join } = require('path');
 
 /**
- * Please note: Node's folks made the world a better place adding this 
+ * Please note: Node's folks made the world a better place adding this
  * `promisify` method to the `utils` lib. It will take a callback-based
  * method and transforms it into a Promise-based method.
  */
@@ -163,29 +163,29 @@ suite('AsyncNode', () => {
     const dummyPath = join(__dirname, 'fixtures', 'dummy');
 
     // `promisified` will behave just like a normal Promise-based method
-    const promisified = promisify(readFile); 
+    const promisified = promisify(readFile);
 
     spec('should read dummy file', async () => {
-        const result = await promisified(dummyPath, 'utf-8'); 
+        const result = await promisified(dummyPath, 'utf-8');
         assert.deepStrictEqual(result, 'dummy dummy dummy');
     })
 
     xspec('ignore this', () => {})
 
     spec('should fail assertion', async () => {
-        const result = await promisified(dummyPath, 'utf-8'); 
+        const result = await promisified(dummyPath, 'utf-8');
         assert.deepStrictEqual(result, 'dummy! dummy! dummy!');
     })
 
     spec('unhandled', async () => {
-        const result = await promisified('not even a path', 'utf-8'); 
+        const result = await promisified('not even a path', 'utf-8');
         assert.deepStrictEqual(result, 'dummy! dummy! dummy!');
     })
 
     spec('should throw', async () => {
         const fn = async () => {
             await promisified('not even a path', 'utf-8')
-        }; 
+        };
 
         await assert.throwsAsync(fn, Error);
     })
@@ -201,7 +201,7 @@ $ node test/asyncNode.specs.js
 
 ### Recipe #4: setInterval, setTimeout
 
-If for some reasons you need to use `setTimeout` or `setInterval` in your tests, you can do 
+If for some reasons you need to use `setTimeout` or `setInterval` in your tests, you can do
 that pretending they're returning a `Promise`. **Titef** under the hoods overrides this two
 methods replacing them with a Promise-based version which can be used as you did with old ones.
 
@@ -234,12 +234,12 @@ suite('AsyncTimeout', () => {
         await assert.throwsAsync(fn, Error);
     })
 })
-```  
+```
 
 ## WTF is testing?
 This is meant to be a super simple introduciton to testing in general for newbies.
 #### Suite
-A **Suite** is a collection of specifications. Along with its specs grouping role, it serves 
+A **Suite** is a collection of specifications. Along with its specs grouping role, it serves
 as a way to _setup_ and _teardown_ your test environment.
 
 ##### Example
@@ -252,15 +252,15 @@ To test if it works you need to:
 3. check if "foo-bar" is in the target file;
 4. delete the file.
 
-The problem is that you most probably don't want to manually create a blank file every time 
+The problem is that you most probably don't want to manually create a blank file every time
 you launch the test and manually delete it at the end of the test.
 
 So in the _setup phase_ you will create the file and in the _teardown phase_ you will delete
-it. 
+it.
 
 #### Specification
 
-A **Specification** is where the magic happens. It's basically a function which is run and 
+A **Specification** is where the magic happens. It's basically a function which is run and
 which contains an _assertion_. An assertion is simply a function which throws an error if
 something unwanted happens.
 

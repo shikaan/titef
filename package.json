@@ -2,17 +2,22 @@
   "name": "titef",
   "version": "0.0.1",
   "description": "Tiny Test Framework",
-  "main": "lib/index.js",
+  "main": "dist/titef.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./lib",
-    "lint:fix": "npm run lint -- --fix"
+    "test": "node ./test",
+    "lint": "eslint ./lib ./test",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "webpack",
+    "prepush": "npm run lint:fix"
   },
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.8.0",
+    "husky": "^0.14.3",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0"
   }
 }
