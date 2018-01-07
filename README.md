@@ -67,6 +67,12 @@ suite('Sum', () => {
 
 ```
 
+To launch the test you need to
+
+```bash
+$ node test/sum.specs.js
+```
+
 ### Recipe #2: Async function with promises
 
 Suppose you have an async function which returns a `Promise`. 
@@ -121,6 +127,12 @@ suite('SumAsync', () => {
     })
 })
 
+```
+
+To launch the test you need to
+
+```bash
+$ node test/sumAsync.specs.js
 ```
 
 ### Recipe #3: Async function with callback
@@ -179,6 +191,12 @@ suite('AsyncNode', () => {
     })
 })
 
+```
+
+To launch the test you need to
+
+```bash
+$ node test/asyncNode.specs.js
 ```
 
 ### Recipe #4: setInterval, setTimeout
@@ -259,14 +277,3 @@ spec('It sums two numbers', () => {
 })
 
 ```
-# Missing features
-[ ][ ] beforeAll
-[ ][ ] afterAll
-[ ][ ] beforeEach 
-[ ][ ] afterEach
-[ ][ ] report
-[ ][ ] exclusive
-[ ][ ] runner
-    [ ][ ] configuration (which files to test, choose report, log level)
-[ ][ ] cancelInterval
-[ ][ ] cancelTimeout
