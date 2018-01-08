@@ -15,4 +15,3 @@ deploy:
   tag: latest
   on:
     tag: true
-    branch: master
