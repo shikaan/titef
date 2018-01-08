@@ -5,10 +5,14 @@ before_script:
   - npm run lint:fix
 script:
   - npm run build
+before_deploy:
+  - npm version TRAVIS_TAG
 deploy:
   provider: npm
   email: NPM_EMAIL
   api_key: NPM_TOKEN
   skip_cleanup: true
+  tag: latest
   on:
-    tags: true
+    tag: true
+    branch: 2-bundle-script

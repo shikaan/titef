@@ -1,6 +1,6 @@
 {
   "name": "titef",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha1",
   "description": "Tiny Test Framework",
   "main": "dist/titef.js",
   "scripts": {
