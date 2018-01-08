@@ -6,11 +6,7 @@ before_script:
 script:
   - npm run build
 before_deploy:
-  - git config --global user.email "builds@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - git tag -a $TRAVIS_TAG $TRAVIS_TAG -f -m $TRAVIS_TAG
-  - git push origin --tags -f
-  - npm version from-git
+  - npm --no-git-tag-version version $TRAVIS_TAG
 deploy:
   provider: npm
   email: $NPM_EMAIL
