@@ -11,4 +11,4 @@ deploy:
   api_key: NPM_TOKEN
   skip_cleanup: true
   on:
-    tags: true
+    branch: 2-bundle-script
