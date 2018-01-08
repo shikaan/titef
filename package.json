@@ -8,7 +8,8 @@
     "lint": "eslint ./lib ./test",
     "lint:fix": "npm run lint -- --fix",
     "build": "webpack",
-    "prepush": "npm run lint:fix"
+    "prepush": "npm run lint:fix",
+    "deploy": "git tag -a <tag_name> && git push origin --tags"
   },
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
   "license": "ISC",

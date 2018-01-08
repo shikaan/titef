@@ -6,7 +6,7 @@ before_script:
 script:
   - npm run build
 before_deploy:
-  - npm --no-git-tag-version version $TRAVIS_TAG
+  - npm version from-git
 deploy:
   provider: npm
   email: $NPM_EMAIL
@@ -16,5 +16,3 @@ deploy:
   on:
     tags: true
     branch: master
-after_deploy:
-  - git checkout master && git add . && git commit -m $TRAVIS_TAG && git push
