@@ -14,4 +14,4 @@ deploy:
   skip_cleanup: true
   tag: latest
   on:
-    tag: true
+    tags: true
