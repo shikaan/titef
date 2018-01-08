@@ -1,0 +1,6 @@
+lib
+script
+test
+webpack.config.js
+.eslintrc.js
+.travis.yml

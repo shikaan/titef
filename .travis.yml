@@ -16,3 +16,6 @@ deploy:
   on:
     tags: true
     branch: master
+after_deploy:
+  - git tag -a $TRAVIS_TAG
+  - git push origin --tags -f
