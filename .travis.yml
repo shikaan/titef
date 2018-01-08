@@ -6,7 +6,7 @@ before_script:
 script:
   - npm run build
 before_deploy:
-  - git tag -a $TRAVIS_TAG $TRAVIS_TAG -f
+  - git tag -a $TRAVIS_TAG $TRAVIS_TAG -f -m $TRAVIS_TAG
   - git push origin --tags -f
   - npm version from-git
 deploy:
