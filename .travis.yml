@@ -17,4 +17,4 @@ deploy:
     tags: true
     branch: master
 after_deploy:
-  - git add . && git commit -m $TRAVIS_TAG && git push
+  - git checkout master && git add . && git commit -m $TRAVIS_TAG && git push
