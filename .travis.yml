@@ -15,4 +15,3 @@ deploy:
   tag: latest
   on:
     tag: true
-    branch: 2-bundle-script
