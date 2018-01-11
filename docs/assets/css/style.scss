@@ -12,15 +12,21 @@
       max-width: 640px;
       position: relative;
       margin: 0 auto;
+      padding: 0;
 
       span.quick_link {
         display: inline-block;
-        width: 80px;
-        text-align: center;
+        margin: 0 10px;
 
         & > a {
-          color: #373737;
           text-transform: uppercase;
+          font-weight: 500;
+          color: #555;
+
+          &:hover {
+            font-weight: 500;
+            color: #373737;
+          }
         }
       }
     }
