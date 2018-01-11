@@ -1,5 +1,6 @@
 # Titef
 Tiny test framework for testing newbies.
+
 ### Why you should use it?
 1. It has everything you need in most of the cases in an incredibly small size;
 2. It has an almost flat learning curve if you're already familiar with other testing frameworks
@@ -16,124 +17,6 @@ For this introduction we'll use Node's `assert`.
 
 Please note: every example you'll read in this documentation is available or at least
 deeply inspired by what you find in the `test` folder of this project.
-
-### Recipe #1: Sync function
-
-Suppose you have a sync function
-
-```javascript
-const sum = (a, b) => {
-    const saneA = Number.parseInt(a, 10);
-    const saneB = Number.parseInt(b, 10);
-
-    if(Number.isNaN(saneA)) {
-        throw new TypeError('First argument is not number')
-    }
-
-    if(Number.isNaN(saneB)) {
-        throw new TypeError('Second argument is not number')
-    }
-
-    return saneA + saneB;
-}
-```
-
-Then what you need to do is create a test file, for instance `sum.specs.js`:
-
-```javascript
-const { suite, spec, xspec } = require('titef');
-const assert = require('assert');
-
-const sum = require('./fixtures/sum');
-
-// `suite` creates a test suite. Every argument is mandatory
-suite('Sum', () => {
-    // `spec` creates a spec. If no error is raised, it will be marked as passed.
-    spec('should sum two numbers', () => {
-        assert.deepEqual(sum(2, 3), 5);
-    })
-
-    spec('should throw', () => {
-        assert.throws(() => {
-            sum('foo', 2);
-        }, TypeError);
-    })
-
-    // if you want to temporarly exclude certain specs, you can use the `xspec` method
-    xspec('ignored', () => {
-        // whatever
-    })
-})
-
-```
-
-To launch the test you need to
-
-```bash
-$ node test/sum.specs.js
-```
-
-### Recipe #2: Async function with promises
-
-Suppose you have an async function which returns a `Promise`.
-
-```javascript
-const asyncSum = (a, b) => {
-    return new Promise((resolve, reject) => {
-        const saneA = Number.parseInt(a, 10);
-        const saneB = Number.parseInt(b, 10);
-
-        if(Number.isNaN(saneA)) {
-            reject('First argument is not number')
-        }
-
-        if(Number.isNaN(saneB)) {
-            reject('Second argument is not number')
-        }
-
-        resolve(saneA + saneB);
-    })
-}
-```
-
-Then what you need to do is create a test file, for instance `sum-async.specs.js` (if
-you're wondering what `spec` and `suite` do, please go to the preceding recipe)
-
-```javascript
-const { suite, spec, xspec } = require('titef');
-const assert = require('assert');
-
-const asyncSum = require('./fixtures/asyncSum');
-
-suite('SumAsync', () => {
-    // Use async keyword if calling an async function
-    spec('should sum two numbers', async () => {
-        const result = await asyncSum(2, 3);
-
-        assert.deepEqual(result, 5);
-    })
-
-    spec('should throw', async () => {
-        const fn = async () => {
-            await asyncSum('foo', 2);
-        }
-
-        // And remember to use `throwsAsync` instead of `throws`, here
-        await assert.throwsAsync(fn, /First argument is not number/);
-    })
-
-    xspec('ignored', () => {
-        // whatever
-    })
-})
-
-```
-
-To launch the test you need to
-
-```bash
-$ node test/sumAsync.specs.js
-```
 
 ### Recipe #3: Async function with callback
 
