@@ -22,7 +22,7 @@ straight to [Recipes](./recipes) page to find everything you need to
 get started.
 
 ## Table of Contents
-1. [Recipes](./recipes/index)
+1. [Recipes](./recipes)
 2. [WTF is testing?](./wtf-testing)
-3. [API documentation](./api/index)
+3. [API documentation](./api)
 

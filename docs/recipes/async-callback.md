@@ -22,7 +22,7 @@ const { join } = require('path');
 const { promisify } = require('util');
 
 suite('AsyncNode', () => {
-    // The dummy file is a file only containing the string `dummy dummy dummy`
+    // The dummy file contains only `dummy dummy dummy`
     const dummyPath = join(__dirname, 'fixtures', 'dummy');
 
     // `promisified` will behave just like a normal Promise-based method
