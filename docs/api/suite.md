@@ -20,8 +20,9 @@ you will pass to the `suite` method.
 | callback  	| `Function` or `AsyncFunction` 	| Where you will host your `specs`.  It runs after `setup` and before `teardown`. 	|
 
 ##### Options
-| Attribute 	| Type       | Description                                 |
-|-----------	|----------- |-------------------------------------------- |
+
+| Attribute 	| Type     | Description                                 |
+|-----------	|--------- |-------------------------------------------- |
 | setup     	| `Function` | What should happen _before_ the suite runs? |
 | teardown   	| `Function` | What should happen _after_ the suite run?  |
 

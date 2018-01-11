@@ -14,13 +14,6 @@ to live in a `suite`.
 | title     	| `String`        	        | Title of the spec. It will be used to generate the report|
 | callback  	| `Function` or `AsyncFunction` 	| Where you will host your assertions.                     |
 
-##### Options
-
-| Attribute 	| Type     | Description                                 |
-|-----------	|--------- |-------------------------------------------- |
-| setup     	| `Function` | What should happen _before_ the suite runs? |
-| teardown   	| `Function` | What should happen _after_ the suite run?  |
-
 #### Remark and caveats
 In **Titef** any `spec` can be either synchronous or asynchronous. Be 
 careful though: once you use the `async` keyword, you don't have any 
