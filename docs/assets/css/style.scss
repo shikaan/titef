@@ -1,0 +1,28 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+#header_wrap {
+  nav.quick_links {
+    background: lightgrey;
+    padding: 10px 30px 10px;
+
+    div.inner {
+      max-width: 640px;
+      position: relative;
+      margin: 0 auto;
+
+      span.quick_link {
+        display: inline-block;
+        width: 80px;
+        text-align: center;
+
+        & > a {
+          color: #373737;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
