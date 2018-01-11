@@ -8,7 +8,8 @@
     "lint": "eslint ./lib ./test",
     "lint:fix": "npm run lint -- --fix",
     "build": "webpack",
-    "prepush": "npm run lint:fix"
+    "prepush": "npm run lint:fix",
+    "jsdoc": "rimraf ./out && jsdoc -r ./lib -d ./docs"
   },
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
   "license": "ISC",
@@ -17,6 +18,8 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "husky": "^0.14.3",
+    "jsdoc": "^3.5.5",
+    "rimraf": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0"
   }
