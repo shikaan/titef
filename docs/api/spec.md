@@ -7,14 +7,15 @@ Given that, every `spec` should always contain one assertion in order to
 be useful. Also, every `spec` is expected - but that's not mandatory -
 to live in a `suite`.
 
-#### `suite(title: string, options?: Options, callback: function)`
+#### `spec(title: string, callback: function)`
 
 | Parameter 	| Type          	        | Description                                              |
 |-----------	|------------------------	|----------------------------------------------------------|
-| title     	| `String`        	        | Title of the spec. It will be used to generate the report|                	|
-| callback  	| `Function|AsyncFunction` 	| Where you will host your assertions.                     |
+| title     	| `String`        	        | Title of the spec. It will be used to generate the report|
+| callback  	| `Function` or `AsyncFunction` 	| Where you will host your assertions.                     |
 
 ##### Options
+
 | Attribute 	| Type     | Description                                 |
 |-----------	|--------- |-------------------------------------------- |
 | setup     	| `Function` | What should happen _before_ the suite runs? |

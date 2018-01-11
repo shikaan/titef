@@ -17,7 +17,7 @@ you will pass to the `suite` method.
 |-----------	|------------------	|---------------------------------------------------------------------------------	|
 | title     	| `String`        	| Title of the test suite. It will be used to generate the report                 	|
 | options   	| `Options?`      	| This adds the setup and teardown phase to your test suite                       	|
-| callback  	| `Function|AsyncFunction` 	| Where you will host your `specs`.  It runs after `setup` and before `teardown`. 	|
+| callback  	| `Function` or `AsyncFunction` 	| Where you will host your `specs`.  It runs after `setup` and before `teardown`. 	|
 
 ##### Options
 | Attribute 	| Type       | Description                                 |
