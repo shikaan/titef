@@ -26,7 +26,7 @@ you will pass to the `suite` method.
 | setup     	| `Function` | What should happen _before_ the suite runs? |
 | teardown   	| `Function` | What should happen _after_ the suite run?  |
 
-#### Remark and caveats
+#### Remarks and caveats
 Although it's not mandatory, we strongly recommend to mark the `callback`
 function as `async`: this will make your test battery run faster.
 
