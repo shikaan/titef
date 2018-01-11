@@ -21,4 +21,8 @@ If you're looking forward to start testing with **Titef**, you can go
 straight to [Recipes](./recipes) page to find everything you need to 
 get started.
 
+## Table of Contents
+1. [Recipes](./recipes/index)
+2. [WTF is testing?](./wtf-testing)
+3. [API documentation](./api/index)
 

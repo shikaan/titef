@@ -9,9 +9,9 @@ get the logic behind it and you won't need this anymore.
 
 ## Table of Contents
 1. [Sync functions](./sync)
-2. [Some paragraph](#paragraph1)
-    1. [Sub paragraph](#subparagraph1)
-3. [Another paragraph](#paragraph2)
+2. [Async functions with Promise](./async-promise)
+3. [Async functions with callback](./async-callback)
+4. [setInterval setTimeout](./interval-timeout)
 
 ## Assumptions
 _Recipes assume_ the following basic knowledge:
