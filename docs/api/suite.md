@@ -13,17 +13,17 @@ you will pass to the `suite` method.
 
 #### `suite(title: string, options?: Options, callback: function)`
 
-| Parameter 	| Type          	| Description                                                                     	|
-|-----------	|---------------	|---------------------------------------------------------------------------------	|
-| title     	| String        	| Title of the test suite. It will be used to generate the report                 	|
-| options   	| ?Options      	| This adds the setup and teardown phase to your test suite                       	|
-| callback  	| Function|AsyncFunction 	| Where you will host your `specs`.  It runs after `setup` and before `teardown`. 	|
+| Parameter 	| Type            	| Description                                                                     	|
+|-----------	|------------------	|---------------------------------------------------------------------------------	|
+| title     	| `String`        	| Title of the test suite. It will be used to generate the report                 	|
+| options   	| `Options?`      	| This adds the setup and teardown phase to your test suite                       	|
+| callback  	| `Function|AsyncFunction` 	| Where you will host your `specs`.  It runs after `setup` and before `teardown`. 	|
 
 ##### Options
-| Attribute 	| Type     | Description                                 |
-|-----------	|--------- |-------------------------------------------- |
-| setup     	| Function | What should happen _before_ the suite runs? |
-| teardown   	| Function | What should happen _after_ the suite run?  |
+| Attribute 	| Type       | Description                                 |
+|-----------	|----------- |-------------------------------------------- |
+| setup     	| `Function` | What should happen _before_ the suite runs? |
+| teardown   	| `Function` | What should happen _after_ the suite run?  |
 
 #### Remark and caveats
 Although it's not mandatory, we strongly recommend to mark the `callback`

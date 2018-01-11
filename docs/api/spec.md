@@ -11,14 +11,14 @@ to live in a `suite`.
 
 | Parameter 	| Type          	        | Description                                              |
 |-----------	|------------------------	|----------------------------------------------------------|
-| title     	| String        	        | Title of the spec. It will be used to generate the report|                	|
-| callback  	| Function|AsyncFunction 	| Where you will host your assertions.                     |
+| title     	| `String`        	        | Title of the spec. It will be used to generate the report|                	|
+| callback  	| `Function|AsyncFunction` 	| Where you will host your assertions.                     |
 
 ##### Options
 | Attribute 	| Type     | Description                                 |
 |-----------	|--------- |-------------------------------------------- |
-| setup     	| Function | What should happen _before_ the suite runs? |
-| teardown   	| Function | What should happen _after_ the suite run?  |
+| setup     	| `Function` | What should happen _before_ the suite runs? |
+| teardown   	| `Function` | What should happen _after_ the suite run?  |
 
 #### Remark and caveats
 In **Titef** any `spec` can be either synchronous or asynchronous. Be 
