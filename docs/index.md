@@ -1,6 +1,6 @@
 # Titef
 
-Tiny Test Framework for newbies.
+Tiny, zero-dependecies test framework for newbies.
 
 It runs on top of NodeJS and it's meant to unit-test JavaScript 
 applications.
