@@ -1,4 +1,8 @@
 # Titef
+![NPM](https://nodei.co/npm/titef.png?downloads=true&downloadRank=true&stars=true)
+![Build Status](https://travis-ci.org/shikaan/titef.svg?branch=master)
+![npm version](https://badge.fury.io/js/titef.svg)
+
 Tiny, zero-dependecies test framework for newbies.
 
 It runs on top of NodeJS and it's meant to unit-test JavaScript 
