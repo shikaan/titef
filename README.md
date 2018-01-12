@@ -1,5 +1,6 @@
 # Titef
 ![NPM](https://nodei.co/npm/titef.png?downloads=true&downloadRank=true&stars=true)
+
 ![Build Status](https://travis-ci.org/shikaan/titef.svg?branch=master)
 ![npm version](https://badge.fury.io/js/titef.svg)
 
