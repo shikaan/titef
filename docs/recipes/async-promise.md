@@ -3,6 +3,8 @@
 Suppose you have an async function which returns a `Promise`.
 
 ```javascript
+// test/fixtures/asyncSum.js
+
 const asyncSum = (a, b) => {
     return new Promise((resolve, reject) => {
         const saneA = Number.parseInt(a, 10);
@@ -22,9 +24,11 @@ const asyncSum = (a, b) => {
 ```
 
 Then what you need to do is create a test file, for instance `sum-async.specs.js` (if
-you're wondering what `spec` and `suite` do, please go to the preceding recipe)
+you're wondering what `spec` and `suite` do, please go [here](./sync))
 
 ```javascript
+// test/sum-async.specs.js
+
 const { suite, spec, xspec } = require('titef');
 const assert = require('assert');
 
@@ -57,5 +61,5 @@ suite('SumAsync', () => {
 To launch the test you need to
 
 ```bash
-$ node test/sumAsync.specs.js
+$ titef test/sum-async.specs.js
 ```

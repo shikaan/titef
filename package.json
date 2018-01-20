@@ -1,10 +1,10 @@
 {
   "name": "titef",
-  "version": "0.0.1-beta5",
+  "version": "0.0.1",
   "description": "Tiny, zero-dependecies test framework for newbies",
   "main": "dist/titef.js",
   "scripts": {
-    "test": "node ./test",
+    "test": "node ./bin/titef.js ./test",
     "lint": "eslint ./lib ./test",
     "lint:fix": "npm run lint -- --fix",
     "build": "webpack",
@@ -30,7 +30,8 @@
     "lightweight",
     "mocha",
     "jasmine",
-    "karma"
+    "karma",
+    "jest"
   ],
   "repository": {
     "type": "git",
