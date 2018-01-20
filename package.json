@@ -1,6 +1,6 @@
 {
   "name": "titef",
-  "version": "0.0.1-beta2",
+  "version": "0.0.1-beta5",
   "description": "Tiny, zero-dependecies test framework for newbies",
   "main": "dist/titef.js",
   "scripts": {
@@ -26,10 +26,17 @@
     "javascript",
     "newbies",
     "test",
-    "framework"
+    "framework",
+    "lightweight",
+    "mocha",
+    "jasmine",
+    "karma"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/shikaan/titef"
+  },
+  "bin": {
+    "titef": "bin/titef.js"
   }
 }

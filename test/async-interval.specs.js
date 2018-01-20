@@ -1,34 +1,10 @@
-const { suite, spec, xspec } = require('../lib');
+const { suite, spec } = require('../lib');
 const assert = require('assert');
 
-suite('AsyncTimeout', () => {
-  spec('should add one', async () => {
-    let count = 1;
-
-    await setTimeout(() => {
-      count += 1;
-    }, 1000);
-
-    assert.equal(count, 2);
-  });
-
-  xspec('should be ignored', () => {
-    // whatever
-  });
-
-  spec('should fail', async () => {
-    let count = 1;
-
-    await setTimeout(() => {
-      count += 1;
-    }, 1000);
-
-    assert.equal(count, 3);
-  });
-
+suite('AsyncInterval', () => {
   spec('should throw', async () => {
     const fn = async () => {
-      await setTimeout(() => {
+      await setInterval(() => {
         throw new Error('asd');
       }, 1000);
     };
@@ -38,7 +14,7 @@ suite('AsyncTimeout', () => {
 
   spec('should fail notThrow', async () => {
     const fn = async () => {
-      await setTimeout(() => {
+      await setInterval(() => {
         throw new Error();
       }, 1000);
     };
@@ -47,22 +23,39 @@ suite('AsyncTimeout', () => {
   });
 
   spec('should return a promise', () => {
-    const promise = setTimeout(() => { }, 10000);
+    const promise = setInterval(() => {
+    }, 10000);
 
     assert.ok(promise instanceof Promise);
+
+    clearInterval(promise);
   });
 
   spec('should reject promise on clear', async () => {
     let called = false;
 
-    const promise = setTimeout(() => {
+    const promise = setInterval(() => {
       called = true;
     }, 1000);
 
-    clearTimeout(promise);
+    clearInterval(promise);
 
     await setTimeout(() => {
       assert.ok(!called);
     }, 1500);
+  });
+
+  spec('should be doing repeated calls', async () => {
+    let callNumber = 0;
+
+    const promise = setInterval(() => {
+      callNumber += 1;
+    }, 1000);
+
+    await setTimeout(() => {
+      assert.deepEqual(callNumber, 10);
+    }, 10100);
+
+    clearInterval(promise);
   });
 });

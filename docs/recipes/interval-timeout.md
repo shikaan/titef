@@ -34,3 +34,19 @@ suite('AsyncTimeout', () => {
     })
 })
 ```
+
+Of course you can also `clearTimeout` and `clearInterval` as you're used to do:
+
+```javascript
+const timeout = setTimeout(() => {
+  // whatever
+}, 10000);
+
+clearTimeout(timeout);
+
+const interval = setInterval(() => {
+  // whatever
+}, 10000);
+
+clearInterval(interval);
+```
