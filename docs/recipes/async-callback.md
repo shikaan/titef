@@ -7,8 +7,8 @@ to a Promise based async function and then use what we already did in Recipe #2.
 Let's take for example Node's `fs.readFile`.
 
 Then what you need to do is create a test file, for instance `async-node.specs.js` (if
-you'll be wondering what `spec` and `suite` do, please go to the first recipe; if you'll
-be wondering how to use `async` go to the second one).
+you'll be wondering what `spec` and `suite` do, please go [here](./sync); if you'll
+be wondering how to use `async` go [here](./async-promise)).
 
 ```javascript
 // test/async-node.specs.js
