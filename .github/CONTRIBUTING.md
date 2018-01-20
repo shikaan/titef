@@ -8,6 +8,13 @@ Before writing any line in this repo, please read the
 [Code of conduct](./CODE_OF_CONDUCT.md) otherwise, if you really are 
 too busy to do it, simply don't be a jerk.
 
+### First issues
+Actually every issue is pretty much good as first issue, since the 
+code still looks very easy and clean. You can take a look at 
+[issues](https://github.com/shikaan/titef/issues) or at 
+[projects](https://github.com/shikaan/titef/projects) if you don't 
+know where to start.
+
 ### Pull Request
 Every Pull Request should be made filling the precompiled form, which 
 is supposed to guide the contributor to explain clearly what has been done,
