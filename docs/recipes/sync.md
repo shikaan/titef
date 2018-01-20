@@ -3,6 +3,8 @@
 Suppose you have a sync function
 
 ```javascript
+// test/fixtures/sum.js
+
 const sum = (a, b) => {
     const saneA = Number.parseInt(a, 10);
     const saneB = Number.parseInt(b, 10);
@@ -22,6 +24,8 @@ const sum = (a, b) => {
 Then what you need to do is create a test file, for instance `sum.specs.js`:
 
 ```javascript
+// test/sum.specs.js
+
 const { suite, spec, xspec } = require('titef');
 const assert = require('assert');
 
@@ -51,5 +55,5 @@ suite('Sum', () => {
 To launch the test you need to
 
 ```bash
-$ node test/sum.specs.js
+$ titef test/sum.specs.js
 ```

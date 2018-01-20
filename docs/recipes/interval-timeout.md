@@ -5,6 +5,8 @@ that pretending they're returning a `Promise`. **Titef** under the hoods overrid
 methods replacing them with a Promise-based version which can be used as you did with old ones.
 
 ```javascript
+// test/async-timeout.specs.js
+
 const { suite, spec, xspec } = require('../');
 const assert = require('assert');
 
@@ -50,3 +52,12 @@ const interval = setInterval(() => {
 
 clearInterval(interval);
 ```
+##### Please note:
+`setTimeout` and `setInterval` are replaced by Promise-based versions only when you run your
+script using titef-cli. This means that the above commands are supposed to work only when you
+do something like:
+
+```bash
+$ titef test/async-timeout.specs.js
+```
+

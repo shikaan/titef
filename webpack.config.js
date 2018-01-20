@@ -1,19 +1,47 @@
 const { join } = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { BannerPlugin } = require('webpack');
 
-module.exports = {
-  target: 'node',
-  entry: {
-    bundle: join(__dirname, 'lib', 'index.js'),
-  },
+const libConfig = {
+  entry: join(__dirname, 'lib', 'index.js'),
   output: {
     path: join(__dirname, 'dist'),
     filename: 'titef.js',
     libraryTarget: 'commonjs',
   },
+};
+
+const cliConfig = {
+  entry: join(__dirname, 'lib', 'cli', 'index.js'),
+  output: {
+    path: join(__dirname, 'bin'),
+    filename: 'titef.js',
+    libraryTarget: 'commonjs',
+  },
+  plugins: [
+    new BannerPlugin({
+      banner: '#! /usr/bin/env node',
+      raw: true,
+    }),
+  ],
+};
+
+const generateConfiguration = ({
+  entry, output, plugins = [], externals,
+}) => ({
+  target: 'node',
+  entry,
+  output,
   plugins: [
     new UglifyJsPlugin({
       test: /\.js($|\?)/i,
     }),
+    ...plugins,
   ],
-};
+  externals,
+});
+
+module.exports = [
+  generateConfiguration(libConfig),
+  generateConfiguration(cliConfig),
+];

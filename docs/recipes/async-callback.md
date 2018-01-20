@@ -11,6 +11,8 @@ you'll be wondering what `spec` and `suite` do, please go to the first recipe; i
 be wondering how to use `async` go to the second one).
 
 ```javascript
+// test/async-node.specs.js
+
 const { readFile } = require('fs');
 const { join } = require('path');
 
@@ -59,5 +61,5 @@ suite('AsyncNode', () => {
 To launch the test you need to
 
 ```bash
-$ node test/asyncNode.specs.js
+$ titef test/async-node.specs.js
 ```
