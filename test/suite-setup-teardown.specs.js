@@ -1,4 +1,4 @@
-const { suite, spec } = require('../');
+const { suite, spec } = require('../lib/index');
 const { print, TEXT_FORMAT } = require('../lib/_utils');
 const { ERROR } = require('../lib/_const');
 
