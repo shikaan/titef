@@ -8,7 +8,7 @@ script:
 before_deploy:
   - npm --no-git-tag-version version $TRAVIS_TAG
 after_deploy:
-    - node scripts/bump-version.js $TRAVIS_TAG
+  - npm run bump-version -- $TRAVIS_TAG
 deploy:
   provider: npm
   email: $NPM_EMAIL
