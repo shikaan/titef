@@ -1,8 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const { readFileSync, writeFileSync } = require('fs');
 const { resolve } = require('path');
 const git = require('simple-git')(resolve(__dirname, '..'));
 
 const packageJSONPath = resolve(__dirname, '../package.json');
+const liveBranch = 'development';
 
 // Get and cleans version number from first argument
 const getVersion = () => {
@@ -30,8 +32,16 @@ const updatePackageJSON = () => {
 };
 
 const pushChanges = async () => {
-  git.add(packageJSONPath);
-
-
+  git
+    .addConfig('user.name', 'TravisCI')
+    .addConfig('user.email', 'ci@travis-ci.org')
+    .fetch('origin', liveBranch)
+    .checkout(liveBranch)
+    .add(packageJSONPath)
+    .commit('Bump version')
+    .push('origin', liveBranch);
 };
+
+updatePackageJSON();
+pushChanges();
 
