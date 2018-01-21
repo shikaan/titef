@@ -1,6 +1,6 @@
 {
   "name": "titef",
-  "version": "1.0.1-alpha1",
+  "version": "1.0.1-alpha2",
   "description": "Tiny, zero-dependecies test framework for newbies",
   "main": "dist/titef.js",
   "scripts": {
