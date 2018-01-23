@@ -52,7 +52,7 @@ const interval = setInterval(() => {
 
 clearInterval(interval);
 ```
-##### Please note:
+##### Remark #1:
 `setTimeout` and `setInterval` are replaced by Promise-based versions only when you run your
 script using titef-cli. This means that the above commands are supposed to work only when you
 do something like:
@@ -60,4 +60,8 @@ do something like:
 ```bash
 $ titef test/async-timeout.specs.js
 ```
-
+##### Remark #2:
+If you happen to use TypeScript, please remember to use `global.setTimeout` and 
+`global.setInterval` instead of `setInterval` and `setTimeout`. Non prefixed ones are 
+replaced under the hoods by Typescript with methods in `timers` library and these (still!)
+don't work well with Titef.
