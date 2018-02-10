@@ -7,7 +7,9 @@
     "lint": "eslint ./lib ./test",
     "lint:fix": "npm run lint -- --fix",
     "build": "webpack",
-    "prepush": "npm run lint:fix"
+    "prepush": "npm run lint:fix",
+    "start": "webpack --watch",
+    "bin": "node ./bin/titef.js"
   },
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
   "license": "MIT",
