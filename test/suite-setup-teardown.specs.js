@@ -1,10 +1,7 @@
 const { suite, spec } = require('../');
-const { print, TEXT_FORMAT } = require('../lib/_utils');
 const { ERROR } = require('../lib/_const');
 
 const assert = require('assert');
-
-print(TEXT_FORMAT.BOLD, 'Testing suite setup/teardown');
 
 suite('suite', () => {
   spec('should throw if no arguments', async () => {
