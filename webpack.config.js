@@ -31,19 +31,25 @@ const cliConfig = {
 };
 
 const generateConfiguration = ({
-  entry, output, plugins = [], externals,
-}) => ({
-  target: 'node',
-  entry,
-  output,
-  plugins: [
-    new UglifyJsPlugin({
-      test: /\.js($|\?)/i,
-    }),
-    ...plugins,
-  ],
-  externals,
-});
+  entry, output, additionalPlugins = [], externals,
+}) => {
+  const plugins = process.env.NODE_ENV === 'development'
+    ? additionalPlugins
+    : [
+      new UglifyJsPlugin({
+        test: /\.js($|\?)/i,
+      }),
+      ...additionalPlugins,
+    ];
+
+  return {
+    target: 'node',
+    entry,
+    output,
+    plugins,
+    externals,
+  };
+};
 
 module.exports = [
   generateConfiguration(libConfig),
