@@ -1,6 +1,5 @@
 const { join } = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { BannerPlugin } = require('webpack');
 
 const libConfig = {
@@ -10,9 +9,6 @@ const libConfig = {
     filename: 'titef.js',
     libraryTarget: 'commonjs',
   },
-  plugins: [
-    new BundleAnalyzerPlugin(),
-  ],
 };
 
 const cliConfig = {

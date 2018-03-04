@@ -60,17 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = require("events");
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports) {
 
 const EVENT = {
@@ -129,66 +123,13 @@ module.exports = {
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 1 */
+/***/ (function(module, exports) {
 
-const EventEmitter = __webpack_require__(0);
-const { EVENT, RESULT } = __webpack_require__(1);
-const ConsoleReporter = __webpack_require__(7);
-const Database = __webpack_require__(9);
-const ProcessManager = __webpack_require__(10);
-
-class EventBus extends EventEmitter {
-  constructor(name) {
-    super(name);
-
-    // subscribe reporters
-    this._reporters = [ConsoleReporter];
-
-    this.on(EVENT.SUITE.STARTED, (title) => {
-      Database.emit(EVENT.DATABASE.RECORDSET.CREATE, title);
-    });
-
-    this.on(EVENT.SPEC.STARTED, (title) => {
-      Database.emit(EVENT.DATABASE.RECORD.CREATE, title);
-    });
-
-    this.on(EVENT.SPEC.SUCCESS, (title) => {
-      Database.emit(EVENT.DATABASE.RECORD.UPDATE, title, RESULT.SUCCESS);
-    });
-
-    this.on(EVENT.SPEC.IGNORE, (title) => {
-      Database.emit(EVENT.DATABASE.RECORD.UPDATE, title, RESULT.IGNORED);
-    });
-
-    this.on(EVENT.SPEC.FAILURE, (title, payload) => {
-      Database.emit(EVENT.DATABASE.RECORD.UPDATE, title, RESULT.FAILURE, payload);
-      ProcessManager.emit(EVENT.PROCESS.EXIT_CODE.FAILURE);
-    });
-
-    this.on(EVENT.SPEC.ENDED, (title) => {
-      Database.emit(EVENT.DATABASE.RECORD.CLOSE, title);
-    });
-
-    Database.on(EVENT.DATABASE.PROCESS.ENDED, (database) => {
-      this._reporters.forEach((reporter) => {
-        reporter.emit(EVENT.REPORTER.REPORT.START, database);
-      });
-    });
-
-    this._reporters.forEach((reporter) => {
-      reporter.on(EVENT.REPORTER.REPORT.ENDED, () => {
-        ProcessManager.emit(EVENT.PROCESS.EXIT);
-      });
-    });
-  }
-}
-
-module.exports = new EventBus();
-
+module.exports = require("events");
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /**
@@ -220,124 +161,90 @@ module.exports = {
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-const TEXT_FORMAT = {
-  RED: '\x1b[31m',
-  GREEN: '\x1b[32m',
-  YELLOW: '\x1b[33m',
-  RESET: '\x1b[0m',
-  BOLD: '\x1b[1m',
-  GREY: '\x1b[90m',
-};
-
-module.exports = {
-  TEXT_FORMAT,
-};
-
-
-/***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Suite = __webpack_require__(6);
-const Spec = __webpack_require__(11);
+const { EVENT, RESULT } = __webpack_require__(0);
+const ConsoleReporter = __webpack_require__(4);
+const Database = __webpack_require__(7);
+const ProcessManager = __webpack_require__(8);
+const Spec = __webpack_require__(9);
+const Suite = __webpack_require__(10);
 
-module.exports = {
-  suite: Suite.suite,
-  spec: Spec.spec,
-  xspec: Spec.spec,
-};
+class EventBus {
+  constructor() {
+    // subscribe reporters
+    this._reporters = [ConsoleReporter];
 
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const EventEmitter = __webpack_require__(0);
-const EventBus = __webpack_require__(2);
-const {
-  isFunction,
-  isObject,
-} = __webpack_require__(3);
-
-const { EVENT } = __webpack_require__(1);
-
-class Suite extends EventEmitter {
-  static argumentParser(args, defaultOptions) {
-    const opts = args[0];
-    const fn = args[1];
-    switch (args.length) {
-      case 1:
-        if (!isFunction(opts)) {
-          throw new TypeError('Second argument must be a function!');
-        }
-        return {
-          options: defaultOptions,
-          callback: opts,
-        };
-      case 2:
-        if (!isObject(opts)) {
-          throw new TypeError('Second argument must be an object!');
-        }
-
-        if (!isFunction(fn)) {
-          throw new TypeError('Third argument must be a function!');
-        }
-
-        return {
-          options: Object.assign({}, defaultOptions, opts),
-          callback: fn,
-        };
-
-      default:
-        throw new TypeError(`Invalid arguments! Expected (title: string, options?: object, callback: function). Actual: ${
-          args.map(String).join()}`);
-    }
+    this.subscribeToSuite();
+    this.subscribeToSpec();
+    this.subscribeToReporter();
+    this.subscribeToDatabase();
   }
 
-  static suite(title, ...args) {
-    const saneTitle = String(title);
+  subscribeToSuite() {
+    Suite.on(EVENT.SUITE.STARTED, (title) => {
+      Database.emit(EVENT.DATABASE.RECORDSET.CREATE, title);
+    });
+  }
 
-    EventBus.emit(EVENT.SUITE.STARTED, saneTitle);
+  subscribeToSpec() {
+    Spec.on(EVENT.SPEC.STARTED, (title) => {
+      Database.emit(EVENT.DATABASE.RECORD.CREATE, title);
+    });
 
-    const defaultOptions = {
-      title: saneTitle,
-      // eslint-disable no-new-func
-      setup: Function(),
-      teardown: Function(),
-      // eslint-enable no-new-func
-    };
+    Spec.on(EVENT.SPEC.SUCCESS, (title) => {
+      Database.emit(EVENT.DATABASE.RECORD.UPDATE, title, RESULT.SUCCESS);
+    });
 
-    const { options, callback } = Suite.argumentParser(args, defaultOptions);
+    Spec.on(EVENT.SPEC.IGNORE, (title) => {
+      Database.emit(EVENT.DATABASE.RECORD.UPDATE, title, RESULT.IGNORED);
+    });
 
-    if (isFunction(options.setup)) {
-      options.setup();
-    } else {
-      throw new TypeError('Setup must be a function!');
-    }
+    Spec.on(EVENT.SPEC.FAILURE, (title, payload) => {
+      Database.emit(EVENT.DATABASE.RECORD.UPDATE, title, RESULT.FAILURE, payload);
+      ProcessManager.emit(EVENT.PROCESS.EXIT_CODE.FAILURE);
+    });
 
-    callback();
+    Spec.on(EVENT.SPEC.ENDED, (title) => {
+      Database.emit(EVENT.DATABASE.RECORD.CLOSE, title);
+    });
+  }
 
-    if (isFunction(options.teardown)) {
-      options.teardown();
-    } else {
-      throw new TypeError('Teardown must be a function!');
-    }
+  subscribeToDatabase() {
+    Database.on(EVENT.DATABASE.PROCESS.ENDED, (database) => {
+      this._reporters.forEach((reporter) => {
+        reporter.emit(EVENT.REPORTER.REPORT.START, database);
+      });
+    });
+  }
+
+  subscribeToReporter() {
+    this._reporters.forEach((reporter) => {
+      reporter.on(EVENT.REPORTER.REPORT.ENDED, () => {
+        ProcessManager.emit(EVENT.PROCESS.EXIT);
+      });
+    });
   }
 }
 
-module.exports = Suite;
+// Create a unique EventBus instance for each application run
+const instance = new EventBus();
+
+module.exports = {
+  suite: Suite.suite.bind(Suite),
+  spec: Spec.spec.bind(Spec),
+  xspec: Spec.spec.bind(Spec),
+};
 
 
 /***/ }),
-/* 7 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const EventEmitter = __webpack_require__(0);
-const { printDatabase } = __webpack_require__(8);
-const { EVENT } = __webpack_require__(1);
+const EventEmitter = __webpack_require__(1);
+const { printDatabase } = __webpack_require__(5);
+const { EVENT } = __webpack_require__(0);
 
 
 class Reporter extends EventEmitter {
@@ -355,12 +262,12 @@ module.exports = new Reporter();
 
 
 /***/ }),
-/* 8 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const { isFunction } = __webpack_require__(3);
-const { TEXT_FORMAT } = __webpack_require__(4);
-const { RESULT } = __webpack_require__(1);
+const { isFunction } = __webpack_require__(2);
+const { TEXT_FORMAT } = __webpack_require__(6);
+const { RESULT } = __webpack_require__(0);
 
 /**
  * Prints on stdout
@@ -477,11 +384,29 @@ module.exports = {
 
 
 /***/ }),
-/* 9 */
+/* 6 */
+/***/ (function(module, exports) {
+
+const TEXT_FORMAT = {
+  RED: '\x1b[31m',
+  GREEN: '\x1b[32m',
+  YELLOW: '\x1b[33m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+  GREY: '\x1b[90m',
+};
+
+module.exports = {
+  TEXT_FORMAT,
+};
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const EventEmitter = __webpack_require__(0);
-const { EVENT, RESULT, RESULTS } = __webpack_require__(1);
+const EventEmitter = __webpack_require__(1);
+const { EVENT, RESULT, RESULTS } = __webpack_require__(0);
 
 class Database extends EventEmitter {
   constructor() {
@@ -551,11 +476,11 @@ module.exports = new Database();
 
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const EventEmitter = __webpack_require__(0);
-const { EVENT } = __webpack_require__(1);
+const EventEmitter = __webpack_require__(1);
+const { EVENT } = __webpack_require__(0);
 
 class ProcessManager extends EventEmitter {
   constructor() {
@@ -577,35 +502,113 @@ module.exports = new ProcessManager();
 
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const EventEmitter = __webpack_require__(0);
-const EventBus = __webpack_require__(2);
-const { EVENT } = __webpack_require__(1);
+const EventEmitter = __webpack_require__(1);
+const { EVENT } = __webpack_require__(0);
 
 class Spec extends EventEmitter {
-  static async spec(title, callback) {
-    EventBus.emit(EVENT.SPEC.STARTED, title);
+  async spec(title, callback) {
+    this.emit(EVENT.SPEC.STARTED, title);
 
     try {
       await callback();
-      EventBus.emit(EVENT.SPEC.SUCCESS, title);
+      this.emit(EVENT.SPEC.SUCCESS, title);
     } catch (e) {
-      EventBus.emit(EVENT.SPEC.FAILURE, title, e);
+      this.emit(EVENT.SPEC.FAILURE, title, e);
     }
 
-    EventBus.emit(EVENT.SPEC.ENDED, title);
+    this.emit(EVENT.SPEC.ENDED, title);
   }
 
-  static async xspec(title) {
-    EventBus.emit(EVENT.SPEC.STARTED, title);
-    EventBus.emit(EVENT.SPEC.IGNORE, title);
-    EventBus.emit(EVENT.SPEC.ENDED, title);
+  async xspec(title) {
+    this.emit(EVENT.SPEC.STARTED, title);
+    this.emit(EVENT.SPEC.IGNORE, title);
+    this.emit(EVENT.SPEC.ENDED, title);
   }
 }
 
-module.exports = Spec;
+module.exports = new Spec();
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const EventEmitter = __webpack_require__(1);
+const {
+  isFunction,
+  isObject,
+} = __webpack_require__(2);
+
+const { EVENT } = __webpack_require__(0);
+
+class Suite extends EventEmitter {
+  static argumentParser(args, defaultOptions) {
+    const opts = args[0];
+    const fn = args[1];
+    switch (args.length) {
+      case 1:
+        if (!isFunction(opts)) {
+          throw new TypeError('Second argument must be a function!');
+        }
+        return {
+          options: defaultOptions,
+          callback: opts,
+        };
+      case 2:
+        if (!isObject(opts)) {
+          throw new TypeError('Second argument must be an object!');
+        }
+
+        if (!isFunction(fn)) {
+          throw new TypeError('Third argument must be a function!');
+        }
+
+        return {
+          options: Object.assign({}, defaultOptions, opts),
+          callback: fn,
+        };
+
+      default:
+        throw new TypeError(`Invalid arguments! Expected (title: string, options?: object, callback: function). Actual: ${
+          args.map(String).join()}`);
+    }
+  }
+
+  suite(title, ...args) {
+    const saneTitle = String(title);
+
+    this.emit(EVENT.SUITE.STARTED, saneTitle);
+
+    const defaultOptions = {
+      title: saneTitle,
+      // eslint-disable-next-line no-new-func
+      setup: Function(),
+      // eslint-disable-next-line no-new-func
+      teardown: Function(),
+    };
+
+    const { options, callback } = Suite.argumentParser(args, defaultOptions);
+
+    if (isFunction(options.setup)) {
+      options.setup();
+    } else {
+      throw new TypeError('Setup must be a function!');
+    }
+
+    callback();
+
+    if (isFunction(options.teardown)) {
+      options.teardown();
+    } else {
+      throw new TypeError('Teardown must be a function!');
+    }
+  }
+}
+
+module.exports = new Suite();
 
 
 /***/ })
