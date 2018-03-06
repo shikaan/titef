@@ -4,8 +4,7 @@ Specifications are basically functions: as long as no `AssertionError` is
 thrown, the specification is assumed to be passed.
 
 Given that, every `spec` should always contain one assertion in order to
-be useful. Also, every `spec` is expected - but that's not mandatory -
-to live in a `suite`.
+be useful. Also, every `spec` is expected to live in a `suite`.
 
 #### `spec(title: string, callback: function)`
 
@@ -17,7 +16,7 @@ to live in a `suite`.
 #### `xspec(title: string, callback: function)`
 
 Sometimes you maybe want to ignore certain test specifications. To do so
-just add an `x` (as _exclude_) in front of you spec: `xspec`. 
+just add an `x` (as _exclude_) in front of you spec: `xspec`.
 
 | Parameter 	| Type          	        | Description                                              |
 |-----------	|------------------------	|----------------------------------------------------------|
@@ -26,8 +25,8 @@ just add an `x` (as _exclude_) in front of you spec: `xspec`.
 
 
 #### Remarks and caveats
-In **Titef** any `spec` can be either synchronous or asynchronous. Be 
-careful though: once you use the `async` keyword, you don't have any 
+In **Titef** any `spec` can be either synchronous or asynchronous. Be
+careful though: once you use the `async` keyword, you don't have any
 guarantee about the order of execution of specs! Make sure your specs
 are independent before going for an `async` flow.
 
