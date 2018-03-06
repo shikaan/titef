@@ -2,9 +2,9 @@
 
 Suites are containers for test specifications (see [specs](./specs)).
 
-Along with their grouping function, suites have the fundamental role of 
-allowing the developer to manage the development environment. This happens
-through two phases: the **setup phase** which happens _before_ the actual 
+Along with their grouping function, suites have the fundamental role of
+allowing the developer to prepare the testing environment. This happens
+through two phases: the **setup phase** which happens _before_ the actual
 test suite is run and the **teardown phase** which is supposed to happen
 _after_.
 
@@ -24,17 +24,11 @@ you will pass to the `suite` method.
 | Attribute 	| Type     | Description                                 |
 |-----------	|--------- |-------------------------------------------- |
 | setup     	| `Function` | What should happen _before_ the suite runs? |
-| teardown   	| `Function` | What should happen _after_ the suite run?  |
+| teardown   	| `Function` | What should happen _after_ the suite runs?  |
 
 #### Remarks and caveats
-Although it's not mandatory, we strongly recommend to mark the `callback`
-function as `async`: this will make your test battery run faster.
 
-**Caution!**
-
-If you choose to do so, please remember that async suites should be 
-independent: as a matter of fact, you don't have any guarantee on 
-the order of execution of `specs` contained in async suites!
+As opposed to `spec` and `xspec`, `suite`s are synchronous.
 
 #### Example
 
@@ -42,7 +36,7 @@ the order of execution of `specs` contained in async suites!
 const { suite } = require('titef');
 
 suite(
-  'My first test suite', 
+  'My first test suite',
   {
     setup() {
       console.log('I am setting up the environment!')
@@ -51,7 +45,7 @@ suite(
       console.log('Test suite ended. Should I report anything?')
     }
   },
-  async () => {
+  () => {
     // Collection of specs
   })
 ```
