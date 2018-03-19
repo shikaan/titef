@@ -10,6 +10,8 @@ _after_.
 
 In **Titef** you can control those phases via the configuration object
 you will pass to the `suite` method.
+Also, you can go deeper controlling what happens before and after each
+specification.
 
 #### `suite(title: string, options?: Options, callback: function)`
 
@@ -21,10 +23,13 @@ you will pass to the `suite` method.
 
 ##### Options
 
-| Attribute 	| Type     | Description                                 |
-|-----------	|--------- |-------------------------------------------- |
+| Attribute 	| Type       | Description                                 |
+|-----------	|----------- |-------------------------------------------- |
 | setup     	| `Function` | What should happen _before_ the suite runs? |
 | teardown   	| `Function` | What should happen _after_ the suite runs?  |
+| eachSetup   | `Function` | What should happen _before each spec_ runs? |
+| eachTeardown| `Function` | What should happen _after each spec_ runs?  |
+
 
 #### Remarks and caveats
 
