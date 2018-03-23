@@ -1,17 +1,36 @@
-/* eslint-disable prefer-arrow-callback */
-
 const { suite, spec, xspec } = require('../lib');
 const assert = require('assert');
 
-suite('suite', function asdf() {
-  spec('spec', function asdf2() {
-
+suite('suite', () => {
+  spec('spec', () => {
+    assert(false);
   });
-  suite('suite 1', function asdf3() {
-    spec('spec 1', function asdf4() {
+
+  suite('suite 1', () => {
+    spec('spec 1', () => {
       assert(false);
+    });
+
+    suite('suite 1.1', () => {
+      spec('spec 1.1', () => {
+
+      });
+
+      spec('spec 1.2', () => {
+        assert(false);
+      });
+
+      spec('spec 1.3', () => {
+
+      });
     });
   });
 
   xspec('ignored');
+
+  suite('suite 2', () => {
+    spec('spec 2', () => {
+      assert(false);
+    });
+  });
 });
