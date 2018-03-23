@@ -19,6 +19,7 @@ suite(
         eachTeardown() {
           messages.push('spec:teardown');
         },
+        silent: true,
       }, () => {
         messages.push('suite:callback');
         spec('b', () => {
