@@ -27,12 +27,14 @@ suite(
         });
       });
 
-      assert.equal(messages[0], 'suite:setup');
-      assert.equal(messages[1], 'suite:callback');
-      assert.equal(messages[2], 'spec:setup');
-      assert.equal(messages[3], 'spec:callback');
-      assert.equal(messages[4], 'spec:teardown');
-      assert.equal(messages[5], 'suite:teardown');
+      await setTimeout(() => {
+        assert.equal(messages[0], 'suite:setup');
+        assert.equal(messages[1], 'suite:callback');
+        assert.equal(messages[2], 'spec:setup');
+        assert.equal(messages[3], 'spec:callback');
+        assert.equal(messages[4], 'spec:teardown');
+        assert.equal(messages[5], 'suite:teardown');
+      }, 100);
     });
   },
 );
