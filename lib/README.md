@@ -11,8 +11,18 @@ architecture.
 
 All the events go through central event broker which is called `Event
 Bus` and all the other parties are both Publisher and Subscriber.
-Each of those Event Processors are basically Node's
+
+Each of those Event Processors can be thought as Node's
 [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter).
+Actually, most of them _are_ so: the only exceptions are `Spec` and 
+`Suite` as they are exposing instances of `EventEmitter` without being 
+so. 
+
+The reason why these are not classes is simple: we wanted to have a 
+shared context between suite and spec and methods in classes cannot have
+a context which is not the class itself. We could have created `static` 
+methods or put everything in the same class, but the current 
+implementation sounded like the cleanest.
 
 ### The chart
 ![Event Driven Achitecture](../docs/assets/draw.io/arch.png)
@@ -31,9 +41,9 @@ doing and, if it's not obvious, why do it exists.
 
 #### Database
 
-Database is an EventEmitter which is responsible for managing an in
-memory database whose records contain all the information we need to
-print reports.
+[Database](./database.js) is an EventEmitter which is responsible for 
+managing an in memory database whose records contain all the information 
+we need to print reports.
 
 In memory database sounds cumbersome... It's actually a big POJO with
 the following structure:
@@ -41,21 +51,25 @@ the following structure:
 ```
 {
    [suite name]: {
+       meta {
+          processed,  // specs processed in the suite
+          path,       // suite property path
+          silent,     // whether or not print this suite 
+       },
        [spec name]: {
-           title,     // spec name
-           suite,     // suite name
            result,    // SUCCESS, FAILED, PENDING, IGNORED
            payload    // error (if any)
        }
 }
 ```
 
-As you can see, for each suite we have a multiple records. How would you
-call a set of record set? :smiley:
+As you can see, for each suite we have multiple records (eventually 
+other suites). How would you call a set of record set? :smiley:
 
 #### Process Manager
 
-Another event emitter whose aim is to handle the current process.
+[Another event emitter](./process-manager.js) whose aim is to handle
+the current process.
 
 Why do we need this?
 Basically we just need to exit the current process with exit code
@@ -67,8 +81,8 @@ when this occurs, we close the process with the suitable exit code.
 
 #### Reporter
 
-The reporter, as the name suggests, is what is supposed to report test
-results.
+The [reporter](./reporter), as the name suggests, is what is supposed 
+to report test results.
 
 As you might have noticed, it has a different structure than the other
 components. Reason being is that we want to allow, in future versions,
@@ -79,20 +93,20 @@ Reporter needs to read records from `Database`. Such records are passed
 as event payload by `Database` when the processing of all the specs is
 done.
 
-
 #### Spec
 
-This Event Processor emits all the events related to a specification
-status.
+[This](./spec.js) Event Processor emits all the events related to a 
+specification status.
 
 This has two methods `spec` and `xspec` that are publicly exposed and
 documented [here](https://shikaan.github.io/titef).
 
 #### Suite
 
-This Event Processor emits all the events related to a suite status.
+[This](./suite.js) Event Processor emits all the events related to a 
+suite status.
 
-This exposes the method `suite` and that is documented
+This exposes the method `suite` that is documented
 [here](https://shikaan.github.io/titef).
 
 ### Conventions

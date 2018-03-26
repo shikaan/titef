@@ -1,6 +1,6 @@
 const { join } = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { BannerPlugin } = require('webpack');
+const { BannerPlugin, DefinePlugin } = require('webpack');
 
 const libConfig = {
   entry: join(__dirname, 'lib', 'index.js'),
@@ -22,6 +22,9 @@ const cliConfig = {
     new BannerPlugin({
       banner: '#! /usr/bin/env node',
       raw: true,
+    }),
+    new DefinePlugin({
+      VERSION: JSON.stringify(process.env.TRAVIS_TAG),
     }),
   ],
 };
