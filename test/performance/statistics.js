@@ -1,20 +1,20 @@
 class Statistics {
-	constructor() {
-		this.sample = [];
-	}
+  constructor() {
+    this.sample = [];
+  }
 
-	get std() {
-		const n = this.sample.length;
-		
-		const num = this.sample.reduce((sum, value) => sum + Math.pow(value - this.mean, 2))
+  get std() {
+    const n = this.sample.length;
 
-		return Math.sqrt(num/(n-1))
-	}
+    const num = this.sample.reduce((sum, value) => sum + Math.pow(value - this.mean, 2));
 
-	get mean() {
-		const n = this.sample.length;
-		return this.sample.reduce((sum, value) => sum + value)/n
-	}
+    return Math.sqrt(num / (n - 1));
+  }
+
+  get mean() {
+    const n = this.sample.length;
+    return this.sample.reduce((sum, value) => sum + value) / n;
+  }
 }
 
-module.exports = new Statistics();
+module.exports = Statistics;
