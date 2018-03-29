@@ -1,54 +1,44 @@
+/* eslint-disable no-console */
+const { Statistics, array } = require('./fixtures');
 const { suite, spec } = require('../../lib');
-const Statistics = require('./statistics');
 const { performance } = require('perf_hooks');
 
-const array = (() => {
-  const x = [];
-
-  let i = 0;
-  while (i < 10000) {
-    x.push(Math.floor(Math.random() * 100000));
-    i++;
-  }
-
-  return x;
-})();
-
 performance.mark('Init');
-suite('benchmark', () => {
+suite('benchmark', { silent: true }, () => {
   spec('with filter', () => {
     const stats = new Statistics();
 
-    for (let i = 0; i <= 1000; i++) {
-      const result = array.filter(i => i % 2);
+    for (let i = 0; i <= 1000; i += 1) {
+      array.filter(j => j % 2);
       performance.mark('End');
       performance.measure('Duration', 'Init', 'End');
 
       stats.sample.push(performance.getEntriesByName('Duration')[0].duration);
     }
 
-    console.log('\x1b[1mTitef\x1b[0m');
-    console.log('\x1b[33mInput size\t\x1b[0m', array.length);
-    console.log('\x1b[33mSample size\t\x1b[0m', stats.sample.length);
-    console.log('\x1b[33mMean\t\t\x1b[0m', stats.mean);
-    console.log('\x1b[33mStd\t\t\x1b[0m', stats.std);
+    console.log('\n\t\x1b[0m\x1b[1mTitef\x1b[0m');
+    console.log('\t\x1b[90m  Filtering\x1b[0m');
+    console.log('\t\x1b[33mInput size\t\x1b[0m', array.length);
+    console.log('\t\x1b[33mSample size\t\x1b[0m', stats.sample.length);
+    console.log('\t\x1b[33mMean\t\t\x1b[0m', stats.mean, 'ms');
+    console.log('\t\x1b[33mStd\t\t\x1b[0m', stats.std, 'ms');
   });
 
   spec('with sort', () => {
     const stats = new Statistics();
 
-    for (let i = 0; i <= 1000; i++) {
-      const result = array.sort();
+    for (let i = 0; i <= 1000; i += 1) {
+      array.sort();
       performance.mark('End');
       performance.measure('Duration', 'Init', 'End');
 
       stats.sample.push(performance.getEntriesByName('Duration')[0].duration);
     }
 
-    console.log('\x1b[1mTitef\x1b[0m');
-    console.log('\x1b[33mInput size\t\x1b[0m', array.length);
-    console.log('\x1b[33mSample size\t\x1b[0m', stats.sample.length);
-    console.log('\x1b[33mMean\t\t\x1b[0m', stats.mean);
-    console.log('\x1b[33mStd\t\t\x1b[0m', stats.std);
+    console.log('\t\x1b[90m  Sorting\x1b[0m');
+    console.log('\t\x1b[33mInput size\t\x1b[0m', array.length);
+    console.log('\t\x1b[33mSample size\t\x1b[0m', stats.sample.length);
+    console.log('\t\x1b[33mMean\t\t\x1b[0m', stats.mean, 'ms');
+    console.log('\t\x1b[33mStd\t\t\x1b[0m', stats.std, 'ms');
   });
 });

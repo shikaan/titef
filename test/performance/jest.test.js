@@ -1,6 +1,5 @@
 /* eslint-env mocha */
-/* eslint-disable no-console */
-const { Statistics, array } = require('./fixtures');
+const { Statistics, array, print } = require('./fixtures');
 const { performance } = require('perf_hooks');
 
 performance.mark('Init');
@@ -16,12 +15,12 @@ describe('benchmark', () => {
       stats.sample.push(performance.getEntriesByName('Duration')[0].duration);
     }
 
-    console.log('\t\x1b[1mMocha\x1b[0m');
-    console.log('\t\x1b[90m  Filtering\x1b[0m');
-    console.log('\t\x1b[33mInput size\t\x1b[0m', array.length);
-    console.log('\t\x1b[33mSample size\t\x1b[0m', stats.sample.length);
-    console.log('\t\x1b[33mMean\t\t\x1b[0m', stats.mean, 'ms');
-    console.log('\t\x1b[33mStd\t\t\x1b[0m', stats.std, 'ms');
+    print('\t\x1b[0m\x1b[1mJest\x1b[0m');
+    print('\t\x1b[90m  Filtering\x1b[0m');
+    print('\t\x1b[33mInput size\t\x1b[0m', array.length);
+    print('\t\x1b[33mSample size\t\x1b[0m', stats.sample.length);
+    print('\t\x1b[33mMean\t\t\x1b[0m', stats.mean, 'ms');
+    print('\t\x1b[33mStd\t\t\x1b[0m', stats.std, 'ms');
   });
 
   it('with sort', () => {
@@ -35,10 +34,10 @@ describe('benchmark', () => {
       stats.sample.push(performance.getEntriesByName('Duration')[0].duration);
     }
 
-    console.log('\t\x1b[90m  Sorting\x1b[0m');
-    console.log('\t\x1b[33mInput size\t\x1b[0m', array.length);
-    console.log('\t\x1b[33mSample size\t\x1b[0m', stats.sample.length);
-    console.log('\t\x1b[33mMean\t\t\x1b[0m', stats.mean, 'ms');
-    console.log('\t\x1b[33mStd\t\t\x1b[0m', stats.std, 'ms');
+    print('\t\x1b[90m  Sorting\x1b[0m');
+    print('\t\x1b[33mInput size\t\x1b[0m', array.length);
+    print('\t\x1b[33mSample size\t\x1b[0m', stats.sample.length);
+    print('\t\x1b[33mMean\t\t\x1b[0m', stats.mean, 'ms');
+    print('\t\x1b[33mStd\t\t\x1b[0m', stats.std, 'ms');
   });
 });

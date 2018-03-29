@@ -39,5 +39,8 @@
   },
   "bin": {
     "titef": "bin/titef.js"
+  },
+  "dependencies": {
+    "jest-silent-reporter": "0.0.4"
   }
 }
