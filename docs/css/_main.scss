@@ -1,0 +1,93 @@
+@import "variables";
+
+// Variables
+//=================================
+$body-background: $light !default;
+$body-font-family: $base-font-family !default;
+$body-font-size: $size-4 !default;
+$body-padding-top: $size-14 !default;
+
+$main-padding: $size-6 !default;
+$main-padding-xs: $size-4 !default;
+$main-padding-xs-top: $size-9 !default;
+
+// Main
+//=================================
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: $body-background;
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  height: 100%;
+  padding-top: $body-padding-top;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+
+  > .container {
+    flex: 1;
+  }
+}
+
+main {
+  margin: auto;
+  padding: $main-padding-xs;
+  padding-top: $main-padding-xs-top;
+}
+
+@media (min-width: map-get($grid-breakpoints, 'sm')) {
+  main {
+    padding: $main-padding;
+  }
+}
+
+a {
+  &:link, &:visited {
+    color: $primary;
+  }
+
+  &.icon:hover {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $primary !important;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+blockquote {
+  color: $dark;
+  padding: 0 $size-4;
+  margin: $size-6;
+  border-left: 5px solid $gray-300;
+  font-size: unset;
+}
+
+@keyframes flash {
+  0% {
+    color: $primary
+  }
+  100% {
+    color: unset;
+  }
+}
+
+:target {
+  will-change: color;
+  animation: flash ease 2s;
+}
+
+:target:before {
+  content:"";
+  display:block;
+  height: $size-16;
+  margin:-$size-16 0 0;
+}

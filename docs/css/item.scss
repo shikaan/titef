@@ -1,0 +1,23 @@
+@import "variables";
+
+.item {
+    padding: $size-3 0;
+}
+
+.item-tag {
+    background-color: $primary;
+}
+
+.item-title {
+    font-size: $size-9;
+    font-family: $heading-font-family;
+    line-height: $size-10;
+    border-bottom: $size-1 $primary solid;
+    margin-bottom: $size-6;
+}
+
+@media (min-width: map-get($grid-breakpoints, 'sm')) {
+    .item-title {
+        font-size: $size-10;
+    }
+}
