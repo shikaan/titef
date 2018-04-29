@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Features on titef</title>
+    <link>http://example.com/categories/features/</link>
+    <description>Recent content in Features on titef</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="http://example.com/categories/features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Easy migration</title>
+      <link>http://example.com/features/migration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/features/migration/</guid>
+      <description>Exposing the same API as the most popular testing framework, you can migrate your projects to Titef now and with no effort</description>
+    </item>
+    
+    <item>
+      <title>Human friendly</title>
+      <link>http://example.com/features/ready/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/features/ready/</guid>
+      <description>Lots of documentation, examples and recipes make your life easier when it&amp;rsquo;s time to embrace Titef, either as contributor or as user</description>
+    </item>
+    
+    <item>
+      <title>Lightning fast</title>
+      <link>http://example.com/features/fast/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/features/fast/</guid>
+      <description>Being two times faster than Jest and five times faster than Mocha, Titef with its ~2.9Kb (gzipped) of total weight is ready to amaze you.</description>
+    </item>
+    
+  </channel>
+</rss>

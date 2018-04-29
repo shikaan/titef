@@ -1,0 +1,11 @@
+@import "variables";
+
+.footer {
+  padding-top: $size-2;
+  margin-top: $size-2;
+  color: $gray-300;
+
+  &.footer__copyright {
+    margin: $size-4 0;
+  }
+}

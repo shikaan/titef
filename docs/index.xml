@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>titef</title>
+    <link>http://example.com/</link>
+    <description>Recent content on titef</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="http://example.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lightning fast</title>
+      <link>http://example.com/features/fast/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/features/fast/</guid>
+      <description>Being two times faster than Jest and five times faster than Mocha, Titef with its ~2.9Kb (gzipped) of total weight is ready to amaze you.</description>
+    </item>
+    
+    <item>
+      <title>Easy migration</title>
+      <link>http://example.com/features/migration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/features/migration/</guid>
+      <description>Exposing the same API as the most popular testing framework, you can migrate your projects to Titef now and with no effort</description>
+    </item>
+    
+    <item>
+      <title>Specifications</title>
+      <link>http://example.com/api/spec/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/api/spec/</guid>
+      <description>Specifications are basically functions: as long as no AssertionError is thrown, the specification is assumed to be passed.
+Given that, every spec should always contain one assertion in order to be useful. Also, every spec is expected to live in a suite or in a describe.
+Writing specifications Specifications can be written using the methods: it, spec. They accept the following parameters:
+   Parameter Type Description     title String Title of the spec.</description>
+    </item>
+    
+    <item>
+      <title>Sync</title>
+      <link>http://example.com/recipes/sync/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/recipes/sync/</guid>
+      <description>Code Suppose you have a sync function
+// test/fixtures/sum.js const sum = (a, b) =&amp;gt; { const saneA = Number.parseInt(a, 10); const saneB = Number.parseInt(b, 10); if(Number.isNaN(saneA)) { throw new TypeError(&#39;First argument is not number&#39;) } if(Number.isNaN(saneB)) { throw new TypeError(&#39;Second argument is not number&#39;) } return saneA + saneB; }  Test (with CLI) Then what you need to do is create a test file, for instance sum.specs.js:</description>
+    </item>
+    
+    <item>
+      <title>Async (with promises)</title>
+      <link>http://example.com/recipes/async-promise/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/recipes/async-promise/</guid>
+      <description>Code Suppose you have an async function which returns a Promise.
+// test/fixtures/asyncSum.js const asyncSum = (a, b) =&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { const saneA = Number.parseInt(a, 10); const saneB = Number.parseInt(b, 10); if(Number.isNaN(saneA)) { reject(&#39;First argument is not number&#39;) } if(Number.isNaN(saneB)) { reject(&#39;Second argument is not number&#39;) } resolve(saneA + saneB); }) }  Test (with CLI) Then what you need to do is create a test file, for instance sum-async.</description>
+    </item>
+    
+    <item>
+      <title>Human friendly</title>
+      <link>http://example.com/features/ready/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/features/ready/</guid>
+      <description>Lots of documentation, examples and recipes make your life easier when it&amp;rsquo;s time to embrace Titef, either as contributor or as user</description>
+    </item>
+    
+    <item>
+      <title>Suites</title>
+      <link>http://example.com/api/suite/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/api/suite/</guid>
+      <description>Suites are containers for test specifications (see specs).
+Along with their grouping function, suites have the fundamental role of allowing the developer to prepare the testing environment. This happens through two phases: the setup phase which happens before the actual test suite is run and the teardown phase which is supposed to happen after.
+In Titef you can control those phases via the configuration object you will pass to the suite method.</description>
+    </item>
+    
+    <item>
+      <title>Async (with callbacks)</title>
+      <link>http://example.com/recipes/async-callback/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/recipes/async-callback/</guid>
+      <description>Code Suppose you have an async function with a callback (seriously?!). What we&amp;rsquo;ll be doing is simply using the promisify method in Node utillibrary to transform that function to a Promise based async function and then use what we already did in Recipe #2.
+Let&amp;rsquo;s take for example Node&amp;rsquo;s fs.readFile.
+Then what you need to do is create a test file, for instance async-node.specs.js (if you&amp;rsquo;ll be wondering what spec and suite do, please go here; if you&amp;rsquo;ll be wondering how to use async go here).</description>
+    </item>
+    
+    <item>
+      <title>setInterval, setTimeout</title>
+      <link>http://example.com/recipes/interval-timeout/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/recipes/interval-timeout/</guid>
+      <description>If for some reasons you need to use setTimeout or setInterval in your tests, you can do that pretending they&amp;rsquo;re returning a Promise. Titef under the hoods overrides this two methods replacing them with a Promise-based version which can be used as you did with old ones.
+Test (with CLI) // test/async-timeout.specs.js const { suite, spec, xspec } = require(&#39;../&#39;); const assert = require(&#39;assert&#39;); suite(&#39;AsyncTimeout&#39;, () =&amp;gt; { spec(&#39;should add one&#39;, async () =&amp;gt; { let count = 1; await setTimeout(() =&amp;gt; { count = count + 1; }, 1000) assert.</description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>http://example.com/performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.com/performance/</guid>
+      <description>So you cannot believe how fast and light Titef can be, right?
+Well, brace yourself.
+Performance test The following test is really straightforward: without testing assertion (because both Mocha and Jest don&amp;rsquo;t have a builtin assertion library) and without testing any implementation related thing, we created a huge array and tried to filter it and sort it in the specifications of the test.
+To give metrics on the performance we created a Statistics class which is supposed to calculate the size of the sample, giving us a couple of basic metrics such as Average and Standard deviation.</description>
+    </item>
+    
+  </channel>
+</rss>

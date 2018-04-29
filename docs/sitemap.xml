@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://example.com/api/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/features/fast/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/recipes/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/features/migration/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/api/spec/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/recipes/sync/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/recipes/async-promise/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/features/ready/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/api/suite/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/recipes/async-callback/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/recipes/interval-timeout/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/features/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/features/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/performance/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/recipes/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

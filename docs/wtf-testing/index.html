@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta property="description" content="Tiny test framework" />
+    <meta property="og:title" content="Titef - " />
+    <meta property="og:description" content="Tiny test framework" />
+    <meta property="og:image" content="http://example.com/images/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://example.com/wtf-testing/" />
+    <meta property="og:locale" content="en_US" />
+
+    <link rel="alternate" hreflang="x-default" href="http://example.com/wtf-testing/" />
+
+    
+    <title>Titef -  </title>
+    
+
+    
+    <link rel="icon" href="http://example.com/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin&#43;Sans">
+
+
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<style>
+    :root {
+        --font: "Lato";
+        --heading-font: "Josefin Sans";
+    }
+</style>
+
+
+<link rel="stylesheet" href="http://example.com/css/style.css">
+
+
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.39" />
+    
+    
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container">
+        <div class="navbar-header">
+
+            <div class="navbar-brand">
+                
+                <img src="http://example.com/images/logo.png" alt="Logo">
+                
+                <span>
+                    
+                </span>
+            </div>
+
+            <button class="navbar-toggle" data-target=".navbar-collapse.menu" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="collapse navbar-collapse menu">
+
+            
+            <ul class="nav navbar-nav">
+                
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+                <li>
+                    <a href="/recipes/">Recipes</a>
+                </li>
+                
+                <li>
+                    <a href="/api/">API Docs</a>
+                </li>
+                
+            </ul>
+             
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li class="navbar-icon">
+                    <a href="mailto:spagnolo.manu@gmail.com">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+                <li class="navbar-icon">
+                    <a href="https://github.com/shikaan/">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+                
+                <li class="navbar-icon">
+                    <a href="https://www.stackoverflow.com/users/5897505/phugo">
+                        <i class="fa fa-stack-overflow"></i>
+                    </a>
+                </li>
+                
+            </ul>
+            
+
+        </div>
+    </div>
+
+    
+    <div class="container visible-xs">
+        <div class="navbar-header sections-navbar" data-target=".navbar-collapse.sections" data-toggle="collapse">
+            Sections
+        </div>
+
+        <div class="collapse navbar-collapse sections">
+            
+
+            <ul class="nav navbar-nav">
+                
+                <li>
+                    <a href="/not-an-index/" title="">
+                        
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/usage/" title="">
+                        
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/wtf-testing/" title="">
+                        
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/performance/" title="Performance">
+                        Performance
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/" title="titef">
+                        titef
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+
+</nav>
+
+    <div class="container">
+        <main class="grid">
+            <aside class="side-column side-column--show-sm">
+                
+
+
+<div class="navigator">
+    
+    <header class="navigator__header">
+        <h2></h2>
+    </header>
+    <section>
+        <ul class="navigator__list">
+            
+            <li class="navigator__list-item ">
+                <a href="/not-an-index/" title="">
+                    
+                </a>
+            </li>
+            
+            <li class="navigator__list-item ">
+                <a href="/usage/" title="">
+                    
+                </a>
+            </li>
+            
+            <li class="navigator__list-item ">
+                <a href="/wtf-testing/" title="">
+                    
+                </a>
+            </li>
+            
+            <li class="navigator__list-item ">
+                <a href="/performance/" title="Performance">
+                    Performance
+                </a>
+            </li>
+            
+            <li class="navigator__list-item ">
+                <a href="/" title="titef">
+                    titef
+                </a>
+            </li>
+            
+        </ul>
+    </section>
+    
+</div>
+
+            </aside>
+            <section class="main-column">
+                <header class="item-title">
+                    
+                </header>
+                <article>
+                    
+
+<h2 id="wtf-is-testing">WTF is testing?</h2>
+
+<p>This is meant to be a super simple introduciton to testing in general for newbies.</p>
+
+<h3 id="suite">Suite</h3>
+
+<p>A <strong>Suite</strong> is a collection of specifications. Along with its specs grouping role, it serves
+as a way to <em>setup</em> and <em>teardown</em> your test environment.</p>
+
+<h4 id="example">Example</h4>
+
+<p>Suppose you have a function which is meant to write the word &ldquo;foo-bar&rdquo; at the end of a file.</p>
+
+<p>To test if it works you need to:</p>
+
+<ol>
+<li>create a blank file;</li>
+<li>launch the function;</li>
+<li>check if &ldquo;foo-bar&rdquo; is in the target file;</li>
+<li>delete the file.</li>
+</ol>
+
+<p>The problem is that you most probably don&rsquo;t want to manually create a blank file every time
+you launch the test and manually delete it at the end of the test.</p>
+
+<p>So in the <em>setup phase</em> you will create the file and in the <em>teardown phase</em> you will delete
+it.</p>
+
+<h3 id="specification">Specification</h3>
+
+<p>A <strong>Specification</strong> is where the magic happens. It&rsquo;s basically a function which is run and
+which contains an <em>assertion</em>. An assertion is simply a function which throws an error if
+something unwanted happens.</p>
+
+<h4 id="example-1">Example</h4>
+
+<p>Suppose you have a function <code>sum</code> which is supposed to&hellip; sum two number.</p>
+
+<pre><code class="language-javascript">const sum = (x, y) =&gt; a + b;
+
+spec('It sums two numbers', () =&gt; {
+    const result = sum(1, 2);
+
+    assert.equal(result, 4); // This throws an Error as 1 + 2 is not 4
+})
+
+</code></pre>
+
+                </article>
+            </section>
+            <aside class="side-column">
+                <div class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#wtf-is-testing">WTF is testing?</a>
+<ul>
+<li><a href="#suite">Suite</a>
+<ul>
+<li><a href="#example">Example</a></li>
+</ul></li>
+<li><a href="#specification">Specification</a>
+<ul>
+<li><a href="#example-1">Example</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+            </aside>
+        </main>
+    </div>
+
+    <footer class="footer">
+    <p class="footer__copyright small">
+        Developed with ❤ by <a href="mailto:spagnolo.manu@gmail.com">Manuel Spagnolo</a>
+    </p>
+</footer>
+</body>
+
+</html>
