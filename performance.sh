@@ -1,9 +1,12 @@
 #! /bin/bash
 
-npx mocha -t 100000 --reporter min ./test/performance/mocha.js
+echo "Mocha"
+mocha -t 100000 --reporter min ./test/performance/spec.js
 
+echo "Jest"
 jest --testPathPattern=performance --reporters jest-silent-reporter
 
-npx titef ./test/performance/titef.js
+echo "Titef"
+titef ./test/performance/spec.js
 
 sleep 5
