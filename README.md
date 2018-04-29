@@ -1,13 +1,18 @@
 <p align="center">
-  <img src="https://preview.ibb.co/dBFOtc/logo.png" alt="Titef logo"/>
+  <img src="https://preview.ibb.co/dBFOtc/logo.png" alt="Titef logo" height="225" />
+  <p align="center">
+    🌠 A tiny, lightning-fast, zero-dependecies JavaScript test framework 🌠
+  </p>
 </p>
 
-![NPM](https://nodei.co/npm/titef.png?downloads=true&downloadRank=true&stars=true)
-
-![Build Status](https://travis-ci.org/shikaan/titef.svg?branch=master)
-![npm version](https://badge.fury.io/js/titef.svg)
-
-🌠 A tiny, lightning-fast, zero-dependecies JavaScript test framework 🌠
+<p align="center">
+  <a href="https://travis-ci.org/shikaan/titef">
+    <img src="https://travis-ci.org/shikaan/titef.svg?branch=master" alt="Build Status">
+  </a>
+  <a href="https://badge.fury.io/js/titef">
+    <img src="https://badge.fury.io/js/titef.svg" alt="npm version" height="18">
+  </a>
+</p>
 
 ### 🎯 Why you should use it?
 
