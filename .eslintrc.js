@@ -4,6 +4,12 @@ module.exports = {
     "no-underscore-dangle": 0
   },
   "globals": {
-    VERSION: true
+    VERSION: true,
+    suite: false,
+    spec: false,
+    xspec: false,
+    describe: false,
+    it: false,
+    xit: false
   }
 };

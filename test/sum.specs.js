@@ -1,4 +1,4 @@
-const { suite, spec, xspec } = require('../lib');
+const { suite, spec, xspec } = require('../');
 const assert = require('assert');
 
 const sum = require('./fixtures/sum');

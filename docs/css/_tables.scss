@@ -1,0 +1,69 @@
+@import "variables";
+@import "main";
+
+// Variables
+//=================================
+$spacer: $size-4 !default;
+
+$table-cell-padding: $size-2 !default;
+$table-bg: transparent !default;
+
+$table-border-width: $size-1 / 2 !default;
+$table-border-color: $gray-200 !default;
+
+$table-head-bg: $gray-100 !default;
+$table-head-color: $dark !default;
+
+// Table
+//=================================
+
+.table-wrapper {
+  display: block;
+  overflow: auto;
+
+  table {
+    table-layout: fixed;
+    width: 150%;
+    margin-bottom: $spacer;
+    margin-top: $spacer;
+    background-color: $table-bg;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    th,
+    td {
+      padding: $table-cell-padding;
+      vertical-align: top;
+      border-top: $table-border-width solid $table-border-color;
+    }
+
+    thead th {
+      vertical-align: bottom;
+      border: 0;
+      background: $table-head-bg;
+      color: $table-head-color;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    tbody + tbody {
+      border-top: (2 * $table-border-width) solid $table-border-color;
+    }
+
+    table {
+      background-color: $light;
+    }
+  }
+
+}
+
+@media (min-width: map-get($grid-breakpoints, 'sm')) {
+  .table-wrapper {
+
+    table {
+      width: 100%;
+    }
+  }
+}

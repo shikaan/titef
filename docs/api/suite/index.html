@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta property="description" content="Tiny test framework" />
+    <meta property="og:title" content="Titef - Suites" />
+    <meta property="og:description" content="Tiny test framework" />
+    <meta property="og:image" content="https://shikaan.github.io/titef/images/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shikaan.github.io/titef/api/suite/" />
+    <meta property="og:locale" content="en_US" />
+
+    <link rel="alternate" hreflang="x-default" href="https://shikaan.github.io/titef/api/suite/" />
+
+    
+    <title>Titef - Suites </title>
+    
+
+    
+    <link rel="icon" href="https://shikaan.github.io/titef/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin&#43;Sans">
+
+
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<style>
+    :root {
+        --font: "Lato";
+        --heading-font: "Josefin Sans";
+    }
+</style>
+
+
+<link rel="stylesheet" href="https://shikaan.github.io/titef/css/style.css">
+
+
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.39" />
+    
+    
+
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112407506-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)};
+      gtag('js', new Date());
+
+      gtag('config', 'UA-112407506-1');
+    </script>
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container">
+        <div class="navbar-header">
+
+            <div class="navbar-brand">
+                
+                <img src="https://shikaan.github.io/titef/images/logo.png" alt="Logo">
+                
+                <span>
+                    Suites
+                </span>
+            </div>
+
+            <button class="navbar-toggle" data-target=".navbar-collapse.menu" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="collapse navbar-collapse menu">
+
+            
+            <ul class="nav navbar-nav">
+                
+                <li>
+                    <a href="/titef/">Home</a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/">Recipes</a>
+                </li>
+                
+                <li>
+                    <a href="/titef/api/">API Docs</a>
+                </li>
+                
+            </ul>
+             
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li class="navbar-icon">
+                    <a href="mailto:spagnolo.manu@gmail.com">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+                <li class="navbar-icon">
+                    <a href="https://github.com/shikaan/titef">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+                
+                <li class="navbar-icon">
+                    <a href="https://www.stackoverflow.com/users/5897505/phugo">
+                        <i class="fa fa-stack-overflow"></i>
+                    </a>
+                </li>
+                
+            </ul>
+            
+
+        </div>
+    </div>
+
+    
+    <div class="container visible-xs">
+        <div class="navbar-header sections-navbar" data-target=".navbar-collapse.sections" data-toggle="collapse">
+            Sections
+        </div>
+
+        <div class="collapse navbar-collapse sections">
+            
+
+            <ul class="nav navbar-nav">
+                
+                <li>
+                    <a href="/titef/api/" title="API Docs">
+                        API Docs
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/api/spec/" title="Specifications">
+                        Specifications
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/api/suite/" title="Suites">
+                        Suites
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+
+</nav>
+
+    <div class="container">
+        <main class="grid">
+            <aside class="side-column side-column--show-sm">
+                
+
+
+<div class="navigator">
+    
+    <header class="navigator__header">
+        <h2>api</h2>
+    </header>
+    <section>
+        <ul class="navigator__list">
+            
+            <li class="navigator__list-item ">
+                <a href="/titef/api/" title="API Docs">
+                    API Docs
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/api/spec/" title="Specifications">
+                    Specifications
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/api/suite/" title="Suites">
+                    Suites
+                </a>
+            </li>
+            
+        </ul>
+    </section>
+    
+</div>
+
+            </aside>
+            <section class="main-column">
+                <header class="item-title">
+                    Suites
+                </header>
+                <article>
+                    
+
+<p>Suites are containers for test specifications (see <a href="./specs">specs</a>).</p>
+
+<p>Along with their grouping function, suites have the fundamental role of
+allowing the developer to prepare the testing environment. This happens
+through two phases: the <strong>setup phase</strong> which happens <em>before</em> the actual
+test suite is run and the <strong>teardown phase</strong> which is supposed to happen
+<em>after</em>.</p>
+
+<p>In <strong>Titef</strong> you can control those phases via the configuration object
+you will pass to the <code>suite</code> method.
+Also, you can go deeper controlling what happens before and after each
+specification.</p>
+
+<h1 id="writing-suites">Writing suites</h1>
+
+<p>Suites can be written using the methods: <code>suite</code>, <code>describe</code>.
+They accept the following parameters:</p>
+
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>title</td>
+<td><code>String</code></td>
+<td>Title of the test suite. It will be used to generate the report</td>
+</tr>
+
+<tr>
+<td>options</td>
+<td><code>Options?</code></td>
+<td>This adds the setup and teardown phase to your test suite</td>
+</tr>
+
+<tr>
+<td>callback</td>
+<td><code>Function</code>  <code>AsyncFunction</code></td>
+<td>Where you will host your <code>specs</code>.  It runs after <code>setup</code> and before <code>teardown</code>.</td>
+</tr>
+</tbody>
+</table></div>
+
+<p>Where the <code>options</code> object is shaped this way</p>
+
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>silent</td>
+<td><code>Boolean</code></td>
+<td>Exclude the suite from reporters</td>
+</tr>
+
+<tr>
+<td>setup</td>
+<td><code>Function</code></td>
+<td>What should happen <em>before</em> the suite runs?</td>
+</tr>
+
+<tr>
+<td>teardown</td>
+<td><code>Function</code></td>
+<td>What should happen <em>after</em> the suite runs?</td>
+</tr>
+
+<tr>
+<td>eachSetup</td>
+<td><code>Function</code></td>
+<td>What should happen <em>before each spec</em> runs?</td>
+</tr>
+
+<tr>
+<td>eachTeardown</td>
+<td><code>Function</code></td>
+<td>What should happen <em>after each spec</em> runs?</td>
+</tr>
+</tbody>
+</table></div>
+
+<h1 id="remarks-and-caveats">Remarks and caveats</h1>
+
+<p>As opposed to <code>spec</code> and <code>xspec</code>, <code>suite</code>s are synchronous.</p>
+
+<h1 id="example">Example</h1>
+
+<pre><code class="language-javascript">suite(
+  'My first test suite',
+  {
+    setup() {
+      console.log('I am setting up the environment!')
+    },
+    teardown() {
+      console.log('Test suite ended. Should I report anything?')
+    }
+  },
+  () =&gt; {
+    // Collection of specs
+  })
+</code></pre>
+
+<pre><code class="language-javascript">describe(
+  'My second test suite',
+  {
+    setup() {
+      console.log('I am setting up the environment!')
+    },
+    teardown() {
+      console.log('Test suite ended. Should I report anything?')
+    }
+  },
+  () =&gt; {
+    // Collection of specs
+  })
+</code></pre>
+
+                </article>
+            </section>
+            <aside class="side-column">
+                <div class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#writing-suites">Writing suites</a></li>
+<li><a href="#remarks-and-caveats">Remarks and caveats</a></li>
+<li><a href="#example">Example</a></li>
+</ul>
+</nav>
+</div>
+            </aside>
+        </main>
+    </div>
+
+    <footer class="footer">
+    <p class="footer__copyright small">
+        Developed with ❤ by <a href="mailto:spagnolo.manu@gmail.com">Manuel Spagnolo</a>
+    </p>
+</footer>
+</body>
+
+</html>

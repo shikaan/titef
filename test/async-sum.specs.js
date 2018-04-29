@@ -1,9 +1,8 @@
-const { suite, spec, xspec } = require('../');
 const assert = require('assert');
 
 const sum = require('./fixtures/asyncSum');
 
-suite('Sum', () => {
+suite('Async Sum', () => {
   spec('should be defined', () => {
     assert.ok(sum);
   });
