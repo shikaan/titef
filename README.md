@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://preview.ibb.co/dBFOtc/logo.png" alt="Titef logo" height="225" />
+  <img src="https://preview.ibb.co/dBFOtc/logo.png" alt="Titef logo" width="320" />
   <p align="center">
     🌠 A tiny, lightning-fast, zero-dependecies JavaScript test framework 🌠
   </p>
@@ -84,4 +84,4 @@ Contributors are well welcomed!
 need to start to get going. A small preview:
 
 - [API docs](https://shikaan.github.io/titef/api/)
-- [developer documentation](./lib/README.md)
+- [developer documentation](https://github.com/shikaan/titef/blob/master/README.md)
