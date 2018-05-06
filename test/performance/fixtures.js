@@ -1,22 +1,3 @@
-class Statistics {
-  constructor() {
-    this.sample = [];
-  }
-
-  get std() {
-    const n = this.sample.length;
-
-    const num = this.sample.reduce((sum, value) => sum + ((value - this.mean) ** 2));
-
-    return Math.sqrt(num / (n - 1));
-  }
-
-  get mean() {
-    const n = this.sample.length;
-    return this.sample.reduce((sum, value) => sum + value) / n;
-  }
-}
-
 const array = (() => {
   const x = [];
 
@@ -32,4 +13,10 @@ const print = (...args) => {
   return process.stdout.write(line.map(String).join(''));
 };
 
-module.exports = { Statistics, array, print };
+const toMilliseconds = ([seconds, nanoseconds]) => {
+  const ns = (seconds * 1e9) + nanoseconds;
+  return ns / 1e6;
+};
+
+
+module.exports = { array, print, toMilliseconds };
