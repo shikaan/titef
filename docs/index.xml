@@ -16,7 +16,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://shikaan.github.io/titef/features/fast/</guid>
-      <description>Being two times faster than Jest and five times faster than Mocha, Titef with its ~2.9Kb (gzipped) of total weight is ready to amaze you.</description>
+      <description>Being faster than Mocha and two times faster than Jest and Ava, Titef with its ~2.9Kb (gzipped) of total weight is ready to amaze you.</description>
     </item>
     
     <item>
@@ -109,8 +109,11 @@ Test (with CLI) // test/async-timeout.specs.js const { suite, spec, xspec } = re
       <guid>https://shikaan.github.io/titef/performance/</guid>
       <description>So you cannot believe how fast and light Titef can be, right?
 Well, brace yourself.
-Performance test The following test is really straightforward: without testing assertion (because both Mocha and Jest don&amp;rsquo;t have a builtin assertion library) and without testing any implementation related thing, we created a huge array and tried to filter it and sort it in the specifications of the test.
-To give metrics on the performance we created a Statistics class which is supposed to calculate the size of the sample, giving us a couple of basic metrics such as Average and Standard deviation.</description>
+ DISCLAIMER
+This has slightly changed since last release. The reasons behind such change are:
+ perf_hooks is no longer working the same in Node 10, so we adopted a version-agnostic support, using hrtime;
+ there was a small bug in the Statistics class;
+   Performance test The following test is really straightforward: without testing assertion (because both Mocha and Titef don&amp;rsquo;t have a builtin assertion library) and without testing any implementation related thing, we created a huge array and tried to filter it and sort it in the specifications of the test.</description>
     </item>
     
   </channel>
