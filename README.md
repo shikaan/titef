@@ -46,7 +46,7 @@ node_modules/.bin/titef test/awesome.specs.js
 
 Your first test file
 
-```ecmascript 6
+```javascript
 // test.js
 
 const assert = require('assert');
