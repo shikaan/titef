@@ -15,12 +15,12 @@
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^4.15.0",
+    "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "husky": "^0.14.3",
     "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^3.10.0"
+    "webpack": "^4.29.5"
   },
   "keywords": [
     "javascript",
