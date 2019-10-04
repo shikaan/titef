@@ -12,6 +12,7 @@
     "bin": "node ./bin/titef.js",
     "bin:debug": "node --inspect-brk ./lib/cli/index.js"
   },
+  "types": "./lib/types.d.ts",
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -20,7 +21,8 @@
     "eslint-plugin-import": "^2.8.0",
     "husky": "^0.14.3",
     "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^4.29.5"
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.3.9"
   },
   "keywords": [
     "javascript",
