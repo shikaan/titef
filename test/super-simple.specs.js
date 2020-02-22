@@ -1,5 +1,5 @@
-const { suite, spec } = require('../lib');
 const assert = require('assert');
+const { suite, spec } = require('../lib');
 
 suite('super simple', () => {
   spec('true', () => {

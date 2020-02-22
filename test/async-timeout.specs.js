@@ -1,5 +1,5 @@
-const { suite, spec, xspec } = require('../lib');
 const assert = require('assert');
+const { suite, spec, xspec } = require('../lib');
 
 suite('AsyncTimeout', () => {
   spec('should add one', async () => {
