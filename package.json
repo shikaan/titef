@@ -6,7 +6,9 @@
     "test": "node ./bin/titef.js ./test",
     "lint": "eslint ./lib ./test",
     "lint:fix": "npm run lint -- --fix",
-    "build": "webpack",
+    "build:cli": "parcel build -t node -d bin -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/cli/index.js",
+    "build:lib": "parcel build -t node -d dist -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/index.js",
+    "build": "npm run build:cli && npm run build:lib",
     "prepush": "npm run lint:fix",
     "start": "webpack --watch",
     "bin": "node ./bin/titef.js",
@@ -20,9 +22,8 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
     "husky": "^0.14.3",
-    "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.3.9"
+    "parcel": "^1.12.4",
+    "parcel-plugin-shebang": "^1.2.8"
   },
   "keywords": [
     "javascript",
@@ -41,5 +42,11 @@
   },
   "bin": {
     "titef": "bin/titef.js"
-  }
+  },
+  "shebang": [{
+    "interpreter": "node",
+    "files": [
+      "./lib/cli/index.js"
+    ]
+  }]
 }
