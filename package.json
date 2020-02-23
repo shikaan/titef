@@ -3,14 +3,15 @@
   "description": "Tiny, zero-dependecies test framework for newbies.",
   "main": "dist/titef.js",
   "scripts": {
-    "test": "node ./bin/titef.js ./test",
-    "lint": "eslint ./lib ./test",
+    "test:integration": "npm run bin -- ./test",
+    "test:unit": "npm run bin -- ./test",
+    "test": "npm run test:unit && npm run test:integration",
     "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint ./lib ./test",
     "build:cli": "parcel build -t node -d bin -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/cli/index.js",
     "build:lib": "parcel build -t node -d dist -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/index.js",
     "build": "npm run build:cli && npm run build:lib",
     "prepush": "npm run lint:fix",
-    "start": "webpack --watch",
     "bin": "node ./bin/titef.js",
     "bin:debug": "node --inspect-brk ./lib/cli/index.js"
   },
