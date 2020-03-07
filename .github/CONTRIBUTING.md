@@ -4,7 +4,7 @@ What rules you need to follow to contribute to this project in order to
 make everyone happy.
 
 Before you start making your hand dirty, it better if you take a look at
-[developer documentation](../lib/README.md) and
+[developer documentation](../src/core/README.md) and
 [API documentation](https://shikaan.github.io/titef/api/)
 
 ### Code of conduct
