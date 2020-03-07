@@ -4,7 +4,7 @@
   "main": "dist/titef.js",
   "scripts": {
     "test:integration": "npm run bin -- ./test",
-    "test:unit": "npm run bin -- ./test",
+    "test:unit": "npm run bin -- --extensions test.js ./test",
     "test": "npm run test:unit && npm run test:integration",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint ./lib ./test",
@@ -23,6 +23,7 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
     "husky": "^0.14.3",
+    "mock-fs": "^4.11.0",
     "parcel": "^1.12.4",
     "parcel-plugin-shebang": "^1.2.8"
   },
@@ -44,10 +45,12 @@
   "bin": {
     "titef": "bin/titef.js"
   },
-  "shebang": [{
-    "interpreter": "node",
-    "files": [
-      "./lib/cli/index.js"
-    ]
-  }]
+  "shebang": [
+    {
+      "interpreter": "node",
+      "files": [
+        "./lib/cli/index.js"
+      ]
+    }
+  ]
 }
