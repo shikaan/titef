@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { suite, spec, xspec } = require('../lib');
+const { suite, spec, xspec } = require('../src/core');
 
 suite('AsyncTimeout', () => {
   spec('should add one', async () => {
@@ -33,7 +33,7 @@ suite('AsyncTimeout', () => {
       }, 1000);
     };
 
-    await assert.throwsAsync(fn, Error);
+    await assert.rejects(fn, Error);
   });
 
   spec('should fail notThrow', async () => {
@@ -43,7 +43,7 @@ suite('AsyncTimeout', () => {
       }, 1000);
     };
 
-    await assert.doesNotThrowAsync(fn, Error);
+    await assert.doesNotReject(fn, Error);
   });
 
   spec('should return a promise', () => {

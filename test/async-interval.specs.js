@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { suite, spec } = require('../lib');
+const { suite, spec } = require('../src/core');
 
 suite('AsyncInterval', () => {
   spec('should throw', async () => {
@@ -9,7 +9,7 @@ suite('AsyncInterval', () => {
       }, 1000);
     };
 
-    await assert.throwsAsync(fn, Error);
+    await assert.rejects(fn, Error);
   });
 
   spec('should fail notThrow', async () => {
@@ -19,7 +19,7 @@ suite('AsyncInterval', () => {
       }, 1000);
     };
 
-    await assert.doesNotThrowAsync(fn, Error);
+    await assert.doesNotReject(fn, Error);
   });
 
   spec('should return a promise', () => {

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
-const test = require('ava');
+const test = require('test/performance/ava');
 const { array } = require('./fixtures');
 
 test('with filter', (t) => {

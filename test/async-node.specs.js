@@ -3,7 +3,7 @@ const { promisify } = require('util');
 
 const { readFile } = require('fs');
 const { join } = require('path');
-const { suite, spec, xspec } = require('../');
+const { suite, spec, xspec } = require('..');
 
 suite('AsyncNode', () => {
   const dummyPath = join(__dirname, 'fixtures', 'dummy');
@@ -29,6 +29,6 @@ suite('AsyncNode', () => {
       await promisify(readFile)('not even a path', 'utf-8');
     };
 
-    await assert.throwsAsync(fn, Error);
+    await assert.rejects(fn, Error);
   });
 });
