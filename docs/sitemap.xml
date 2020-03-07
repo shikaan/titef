@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -43,22 +43,23 @@
   </url>
   
   <url>
+    <loc>https://shikaan.github.io/titef/recipes/multiple-files/</loc>
+  </url>
+  
+  <url>
     <loc>https://shikaan.github.io/titef/recipes/interval-timeout/</loc>
   </url>
   
   <url>
     <loc>https://shikaan.github.io/titef/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://shikaan.github.io/titef/features/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://shikaan.github.io/titef/categories/features/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -67,17 +68,14 @@
   
   <url>
     <loc>https://shikaan.github.io/titef/categories/recipes/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://shikaan.github.io/titef/tags/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://shikaan.github.io/titef/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

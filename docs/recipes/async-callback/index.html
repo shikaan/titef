@@ -71,7 +71,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.39" />
+ <meta name="generator" content="Hugo 0.66.0" />
     
     
 
@@ -191,6 +191,12 @@
                 </li>
                 
                 <li>
+                    <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                        Multiple Files
+                    </a>
+                </li>
+                
+                <li>
                     <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                         setInterval, setTimeout
                     </a>
@@ -242,6 +248,12 @@
             </li>
             
             <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                    Multiple Files
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
                 <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                     setInterval, setTimeout
                 </a>
@@ -258,100 +270,76 @@
                     Async (with callbacks)
                 </header>
                 <article>
-                    
-
-<h1 id="code">Code</h1>
-
+                    <h1 id="code">Code</h1>
 <p>Suppose you have an async function with a callback (seriously?!). What we&rsquo;ll be doing
 is simply using the <code>promisify</code> method in Node <code>util</code>library to transform that function
 to a Promise based async function and then use what we already did in Recipe #2.</p>
-
 <p>Let&rsquo;s take for example Node&rsquo;s <code>fs.readFile</code>.</p>
-
 <p>Then what you need to do is create a test file, for instance <code>async-node.specs.js</code> (if
 you&rsquo;ll be wondering what <code>spec</code> and <code>suite</code> do, please go <a href="./sync">here</a>; if you&rsquo;ll
 be wondering how to use <code>async</code> go <a href="./async-promise">here</a>).</p>
-
 <h1 id="test-with-cli">Test (with CLI)</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/async-node.specs.js
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">readFile</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;fs&#39;</span>);
+<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">join</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
 
-<pre><code class="language-javascript">// test/async-node.specs.js
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Please note: Node&#39;s folks made the world a better place adding this
+</span><span style="color:#75715e"> * `promisify` method to the `utils` lib. It will take a callback-based
+</span><span style="color:#75715e"> * method and transforms it into a Promise-based method.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">promisify</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;util&#39;</span>);
 
-const { readFile } = require('fs');
-const { join } = require('path');
+<span style="color:#a6e22e">suite</span>(<span style="color:#e6db74">&#39;AsyncNode&#39;</span>, () =&gt; {
+    <span style="color:#75715e">// The dummy file contains only `dummy dummy dummy`
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dummyPath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;fixtures&#39;</span>, <span style="color:#e6db74">&#39;dummy&#39;</span>);
 
-/**
- * Please note: Node's folks made the world a better place adding this
- * `promisify` method to the `utils` lib. It will take a callback-based
- * method and transforms it into a Promise-based method.
- */
-const { promisify } = require('util');
+    <span style="color:#75715e">// `promisified` will behave just like a normal Promise-based method
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">promisified</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">promisify</span>(<span style="color:#a6e22e">readFile</span>);
 
-suite('AsyncNode', () =&gt; {
-    // The dummy file contains only `dummy dummy dummy`
-    const dummyPath = join(__dirname, 'fixtures', 'dummy');
-
-    // `promisified` will behave just like a normal Promise-based method
-    const promisified = promisify(readFile);
-
-    spec('should read dummy file', async () =&gt; {
-        const result = await promisified(dummyPath, 'utf-8');
-        assert.deepStrictEqual(result, 'dummy dummy dummy');
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should read dummy file&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#a6e22e">dummyPath</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">deepStrictEqual</span>(<span style="color:#a6e22e">result</span>, <span style="color:#e6db74">&#39;dummy dummy dummy&#39;</span>);
     })
 
-    xspec('ignore this', () =&gt; {})
+    <span style="color:#a6e22e">xspec</span>(<span style="color:#e6db74">&#39;ignore this&#39;</span>, () =&gt; {})
 
-    spec('should fail assertion', async () =&gt; {
-        const result = await promisified(dummyPath, 'utf-8');
-        assert.deepStrictEqual(result, 'dummy! dummy! dummy!');
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should fail assertion&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#a6e22e">dummyPath</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">deepStrictEqual</span>(<span style="color:#a6e22e">result</span>, <span style="color:#e6db74">&#39;dummy! dummy! dummy!&#39;</span>);
     })
 
-    spec('unhandled', async () =&gt; {
-        const result = await promisified('not even a path', 'utf-8');
-        assert.deepStrictEqual(result, 'dummy! dummy! dummy!');
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;unhandled&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#e6db74">&#39;not even a path&#39;</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">deepStrictEqual</span>(<span style="color:#a6e22e">result</span>, <span style="color:#e6db74">&#39;dummy! dummy! dummy!&#39;</span>);
     })
 
-    spec('should throw', async () =&gt; {
-        const fn = async () =&gt; {
-            await promisified('not even a path', 'utf-8')
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should throw&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">async</span> () =&gt; {
+            <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#e6db74">&#39;not even a path&#39;</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>)
         };
 
-        await assert.throwsAsync(fn, Error);
+        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">rejects</span>(<span style="color:#a6e22e">fn</span>, Error);
     })
 })
 
-</code></pre>
-
-<p>To launch the test you need to</p>
-
-<pre><code class="language-bash">$ titef test/async-node.specs.js
-</code></pre>
-
-<h1 id="test-without-cli">Test (without CLI)</h1>
-
+</code></pre></div><p>To launch the test you need to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ titef test/async-node.specs.js
+</code></pre></div><h1 id="test-without-cli">Test (without CLI)</h1>
 <p>Again, you&rsquo;re not forced to use our CLI:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/async-node.specs.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">suite</span>, <span style="color:#a6e22e">spec</span>, <span style="color:#a6e22e">xspec</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;titef&#39;</span>)
 
-<pre><code class="language-javascript">// test/async-node.specs.js
-const { suite, spec, xspec } = require('titef')
-
-//... everything else is just like the example above
-</code></pre>
-
-<p>And then launching the test is as easy as</p>
-
-<pre><code class="language-bash">$ node test/async-node.specs.js
-</code></pre>
-
+<span style="color:#75715e">//... everything else is just like the example above
+</span></code></pre></div><p>And then launching the test is as easy as</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node test/async-node.specs.js
+</code></pre></div>
                 </article>
             </section>
             <aside class="side-column">
                 <div class="toc">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#code">Code</a></li>
-<li><a href="#test-with-cli">Test (with CLI)</a></li>
-<li><a href="#test-without-cli">Test (without CLI)</a></li>
-</ul>
-</nav>
+    <nav id="TableOfContents"></nav>
 </div>
             </aside>
         </main>

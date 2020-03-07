@@ -7,17 +7,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <meta property="description" content="Tiny test framework" />
-    <meta property="og:title" content="Titef - Performance" />
+    <meta property="og:title" content="Titef - Multiple Files" />
     <meta property="og:description" content="Tiny test framework" />
     <meta property="og:image" content="https://shikaan.github.io/titef/images/logo.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://shikaan.github.io/titef/performance/" />
+    <meta property="og:url" content="https://shikaan.github.io/titef/recipes/multiple-files/" />
     <meta property="og:locale" content="en_US" />
 
-    <link rel="alternate" hreflang="x-default" href="https://shikaan.github.io/titef/performance/" />
+    <link rel="alternate" hreflang="x-default" href="https://shikaan.github.io/titef/recipes/multiple-files/" />
 
     
-    <title>Titef - Performance </title>
+    <title>Titef - Multiple Files </title>
     
 
     
@@ -99,7 +99,7 @@
                 <img src="https://shikaan.github.io/titef/images/logo.png" alt="Logo">
                 
                 <span>
-                    Performance
+                    Multiple Files
                 </span>
             </div>
 
@@ -167,14 +167,38 @@
             <ul class="nav navbar-nav">
                 
                 <li>
-                    <a href="/titef/performance/" title="Performance">
-                        Performance
+                    <a href="/titef/recipes/" title="Recipes">
+                        Recipes
                     </a>
                 </li>
                 
                 <li>
-                    <a href="/titef/" title="titef">
-                        titef
+                    <a href="/titef/recipes/sync/" title="Sync">
+                        Sync
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/async-promise/" title="Async (with promises)">
+                        Async (with promises)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/async-callback/" title="Async (with callbacks)">
+                        Async (with callbacks)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                        Multiple Files
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
+                        setInterval, setTimeout
                     </a>
                 </li>
                 
@@ -189,111 +213,92 @@
         <main class="grid">
             <aside class="side-column side-column--show-sm">
                 
+
+
+<div class="navigator">
+    
+    <header class="navigator__header">
+        <h2>recipes</h2>
+    </header>
+    <section>
+        <ul class="navigator__list">
+            
+            <li class="navigator__list-item ">
+                <a href="/titef/recipes/" title="Recipes">
+                    Recipes
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/sync/" title="Sync">
+                    Sync
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/async-promise/" title="Async (with promises)">
+                    Async (with promises)
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/async-callback/" title="Async (with callbacks)">
+                    Async (with callbacks)
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                    Multiple Files
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
+                    setInterval, setTimeout
+                </a>
+            </li>
+            
+        </ul>
+    </section>
+    
+</div>
+
             </aside>
             <section class="main-column">
                 <header class="item-title">
-                    Performance
+                    Multiple Files
                 </header>
                 <article>
-                    <p>So you cannot believe how fast and light Titef can be, right?</p>
-<p>Well, brace yourself.</p>
-<blockquote>
-<p><strong>DISCLAIMER</strong></p>
-<p>This has slightly changed since last release. The reasons
-behind such change are:</p>
-<ol>
-<li>
-<p><code>perf_hooks</code> is no longer working the same in Node 10, so
-we adopted a version-agnostic support, using <code>hrtime</code>;</p>
-</li>
-<li>
-<p>there was a small bug in the <code>Statistics</code> class;</p>
-</li>
-</ol>
-</blockquote>
-<h1 id="performance-test">Performance test</h1>
-<p>The following test is really straightforward: without testing
-assertion (because both Mocha and Titef don&rsquo;t have a builtin
-assertion library) and without testing any implementation
-related thing, we created a huge array and tried to filter it
-and sort it in the specifications of the test.</p>
-<p>Then we measured, using <code>process.hrtime</code>, how log did it take
-to run the whole test.</p>
-<h2 id="code">Code</h2>
-<p>This is the code of the test we ran</p>
-<pre><code>// Mocha, Jest, Titef
-const { array } = require('./fixtures');
+                    <p>Usually you want to differentiate your test files from the rest of
+your code. This might happen for example to exclude tests from the
+final bundle or the code coverage report.</p>
+<p>Common ways of marking test files are: putting them in a <code>test</code></p>
+<!-- raw HTML omitted -->
+<p>Titef CLI has your back in both the cases.</p>
+<h1 id="using--test-folder">Using  <code>test</code> folder</h1>
+<p>The following command will assume that all the files in the <code>test</code> folders
+are test files</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ titef ./test
+</code></pre></div><h1 id="using-extensions">Using extensions</h1>
+<p>The following command will pick only the <code>spec.js</code> files</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ titef --extensions spec.js ./src 
 
-describe('benchmark', () =&gt; {
-  it('with filter', () =&gt; {
-    for (let i = 0; i &lt;= 1000; i += 1) {
-      array.filter(j =&gt; j % 2);
-    }
-  });
+<span style="color:#75715e"># or</span>
 
-  it('with sort', () =&gt; {
-    for (let i = 0; i &lt;= 1000; i += 1) {
-      array.sort();
-    }
-  });
-});
-</code></pre><pre><code>// Ava
-const test = require('ava');
-const { array } = require('./fixtures');
+$ titef -e spec.js ./src 
+</code></pre></div><p>This command instead will use both the <code>spec.js</code> and the <code>test.js</code> files</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ titef --extensions spec.js,test.js ./src 
 
-test('with filter', (t) =&gt; {
-  for (let i = 0; i &lt;= 1000; i += 1) {
-    array.filter(j =&gt; j % 2);
-  }
+<span style="color:#75715e"># or</span>
 
-  t.pass();
-});
-
-test('with sort', (t) =&gt; {
-  for (let i = 0; i &lt;= 1000; i += 1) {
-    array.sort();
-  }
-
-  t.pass();
-});
-</code></pre><h2 id="script">Script</h2>
-<p>This is the script we used to run the same test on all the frameworks</p>
-<pre><code>const { execSync } = require('child_process');
-const { print, toMilliseconds } = require('./fixtures');
-
-print('  Mocha');
-const mochaMark = process.hrtime();
-execSync('mocha -t 100000 --reporter min ./test/performance/spec.js');
-print(`    Duration: ${toMilliseconds(process.hrtime(mochaMark))} ms`);
-
-print('  Jest');
-const jestMark = process.hrtime();
-execSync('jest --testPathPattern=performance --reporters jest-silent-reporter');
-print(`    Duration: ${toMilliseconds(process.hrtime(jestMark))} ms`);
-
-print('  Ava');
-const avaMark = process.hrtime();
-execSync('ava ./test/performance/ava.js');
-print(`    Duration: ${toMilliseconds(process.hrtime(avaMark))} ms`);
-
-print('  Titef');
-const titefMark = process.hrtime();
-execSync('titef ./test/performance/spec.js');
-print(`    Duration: ${toMilliseconds(process.hrtime(titefMark))} ms`);
-</code></pre><h2 id="result">Result</h2>
-<p><img src="../images/titef-performance.gif" alt="Titef Performance"></p>
-
+$ titef -e spec.js,test.js ./src 
+</code></pre></div>
                 </article>
             </section>
             <aside class="side-column">
                 <div class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#code">Code</a></li>
-    <li><a href="#script">Script</a></li>
-    <li><a href="#result">Result</a></li>
-  </ul>
-</nav>
+    <nav id="TableOfContents"></nav>
 </div>
             </aside>
         </main>

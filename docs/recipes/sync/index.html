@@ -71,7 +71,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.39" />
+ <meta name="generator" content="Hugo 0.66.0" />
     
     
 
@@ -191,6 +191,12 @@
                 </li>
                 
                 <li>
+                    <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                        Multiple Files
+                    </a>
+                </li>
+                
+                <li>
                     <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                         setInterval, setTimeout
                     </a>
@@ -242,6 +248,12 @@
             </li>
             
             <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                    Multiple Files
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
                 <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                     setInterval, setTimeout
                 </a>
@@ -258,91 +270,66 @@
                     Sync
                 </header>
                 <article>
-                    
-
-<h1 id="code">Code</h1>
-
+                    <h1 id="code">Code</h1>
 <p>Suppose you have a sync function</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/fixtures/sum.js
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">saneA</span> <span style="color:#f92672">=</span> Number.parseInt(<span style="color:#a6e22e">a</span>, <span style="color:#ae81ff">10</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">saneB</span> <span style="color:#f92672">=</span> Number.parseInt(<span style="color:#a6e22e">b</span>, <span style="color:#ae81ff">10</span>);
 
-<pre><code class="language-javascript">// test/fixtures/sum.js
-
-const sum = (a, b) =&gt; {
-    const saneA = Number.parseInt(a, 10);
-    const saneB = Number.parseInt(b, 10);
-
-    if(Number.isNaN(saneA)) {
-        throw new TypeError('First argument is not number')
+    <span style="color:#66d9ef">if</span>(Number.isNaN(<span style="color:#a6e22e">saneA</span>)) {
+        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#39;First argument is not number&#39;</span>)
     }
 
-    if(Number.isNaN(saneB)) {
-        throw new TypeError('Second argument is not number')
+    <span style="color:#66d9ef">if</span>(Number.isNaN(<span style="color:#a6e22e">saneB</span>)) {
+        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#39;Second argument is not number&#39;</span>)
     }
 
-    return saneA + saneB;
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">saneA</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">saneB</span>;
 }
-</code></pre>
-
-<h1 id="test-with-cli">Test (with CLI)</h1>
-
+</code></pre></div><h1 id="test-with-cli">Test (with CLI)</h1>
 <p>Then what you need to do is create a test file, for instance <code>sum.specs.js</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/sum.specs.js
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">assert</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;assert&#39;</span>);
 
-<pre><code class="language-javascript">// test/sum.specs.js
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./fixtures/sum&#39;</span>);
 
-const assert = require('assert');
-
-const sum = require('./fixtures/sum');
-
-// `suite` creates a test suite. Every argument is mandatory
-suite('Sum', () =&gt; {
-    // `spec` creates a spec. If no error is raised, it will be marked as passed.
-    spec('should sum two numbers', () =&gt; {
-        assert.deepEqual(sum(2, 3), 5);
+<span style="color:#75715e">// `suite` creates a test suite. Every argument is mandatory
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">suite</span>(<span style="color:#e6db74">&#39;Sum&#39;</span>, () =&gt; {
+    <span style="color:#75715e">// `spec` creates a spec. If no error is raised, it will be marked as passed.
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should sum two numbers&#39;</span>, () =&gt; {
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">deepEqual</span>(<span style="color:#a6e22e">sum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">5</span>);
     })
 
-    spec('should throw', () =&gt; {
-        assert.throws(() =&gt; {
-            sum('foo', 2);
-        }, TypeError);
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should throw&#39;</span>, () =&gt; {
+        <span style="color:#a6e22e">assert</span>.<span style="color:#66d9ef">throws</span>(() =&gt; {
+            <span style="color:#a6e22e">sum</span>(<span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#ae81ff">2</span>);
+        }, <span style="color:#a6e22e">TypeError</span>);
     })
 
-    // if you want to temporarly exclude certain specs, you can use the `xspec` method
-    xspec('ignored', () =&gt; {
-        // whatever
-    })
+    <span style="color:#75715e">// if you want to temporarly exclude certain specs, you can use the `xspec` method
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">xspec</span>(<span style="color:#e6db74">&#39;ignored&#39;</span>, () =&gt; {
+        <span style="color:#75715e">// whatever
+</span><span style="color:#75715e"></span>    })
 })
-</code></pre>
-
-<p>To launch the test you need to</p>
-
-<pre><code class="language-bash">$ titef test/sum.specs.js
-</code></pre>
-
-<h1 id="test-without-cli">Test (without CLI)</h1>
-
+</code></pre></div><p>To launch the test you need to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ titef test/sum.specs.js
+</code></pre></div><h1 id="test-without-cli">Test (without CLI)</h1>
 <p>If you don&rsquo;t feel like using our CLI and you&rsquo;re more into a programmatic approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/sum.specs.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">suite</span>, <span style="color:#a6e22e">spec</span>, <span style="color:#a6e22e">xspec</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;titef&#39;</span>)
 
-<pre><code class="language-javascript">// test/sum.specs.js
-const { suite, spec, xspec } = require('titef')
-
-//... everything else is just like the example above
-</code></pre>
-
-<p>And then launching the test is as easy as</p>
-
-<pre><code class="language-bash">$ node test/sum.specs.js
-</code></pre>
-
+<span style="color:#75715e">//... everything else is just like the example above
+</span></code></pre></div><p>And then launching the test is as easy as</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node test/sum.specs.js
+</code></pre></div>
                 </article>
             </section>
             <aside class="side-column">
                 <div class="toc">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#code">Code</a></li>
-<li><a href="#test-with-cli">Test (with CLI)</a></li>
-<li><a href="#test-without-cli">Test (without CLI)</a></li>
-</ul>
-</nav>
+    <nav id="TableOfContents"></nav>
 </div>
             </aside>
         </main>

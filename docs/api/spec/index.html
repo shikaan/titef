@@ -71,7 +71,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.39" />
+ <meta name="generator" content="Hugo 0.66.0" />
     
     
 
@@ -234,20 +234,14 @@
                     Specifications
                 </header>
                 <article>
-                    
-
-<p>Specifications are basically functions: as long as no <code>AssertionError</code> is
+                    <p>Specifications are basically functions: as long as no <code>AssertionError</code> is
 thrown, the specification is assumed to be passed.</p>
-
 <p>Given that, every <code>spec</code> should always contain one assertion in order to
 be useful. Also, every <code>spec</code> is expected to live in a <code>suite</code> or in a
 <code>describe</code>.</p>
-
 <h1 id="writing-specifications">Writing specifications</h1>
-
 <p>Specifications can be written using the methods: <code>it</code>, <code>spec</code>.
 They accept the following parameters:</p>
-
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -256,14 +250,12 @@ They accept the following parameters:</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>title</td>
 <td><code>String</code></td>
 <td>Title of the spec. It will be used to generate the report</td>
 </tr>
-
 <tr>
 <td>callback</td>
 <td><code>Function</code>  <code>AsyncFunction</code></td>
@@ -271,14 +263,10 @@ They accept the following parameters:</p>
 </tr>
 </tbody>
 </table></div>
-
 <h1 id="excluding-specifications">Excluding specifications</h1>
-
 <p>Sometimes you maybe want to ignore certain test specifications. To do so
 just add an <code>x</code> (as <em>exclude</em>) in front of you spec: <code>xspec</code>, <code>xit</code>.</p>
-
 <p>Same parameters as above:</p>
-
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -287,14 +275,12 @@ just add an <code>x</code> (as <em>exclude</em>) in front of you spec: <code>xsp
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>title</td>
 <td><code>String</code></td>
 <td>Title of the spec. It will be used to generate the report</td>
 </tr>
-
 <tr>
 <td>callback</td>
 <td><code>Function</code>  <code>AsyncFunction</code></td>
@@ -302,59 +288,44 @@ just add an <code>x</code> (as <em>exclude</em>) in front of you spec: <code>xsp
 </tr>
 </tbody>
 </table></div>
-
 <h1 id="remarks-and-caveats">Remarks and caveats</h1>
-
 <p>In <strong>Titef</strong> any <code>spec</code> can be either synchronous or asynchronous. Be
 careful though: once you use the <code>async</code> keyword make sure your specs
 are independent before going for an <code>async</code> flow, because they will
 run concurrently and can potentially lead to unexpected results.</p>
-
 <p>If you&rsquo;re not interested in the order of execution of the specs and
 you just care for the order of reporting, you can sleep tight:
 <strong>Titef</strong> will always report result in the same order as the specs
 are written.</p>
-
 <h1 id="examples">Examples</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">assert</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;assert&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myClass</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./my-class&#39;</span>);
 
-<pre><code class="language-javascript">const assert = require('assert');
-const myClass = require('./my-class');
-
-suite('myClass:myMethod', () =&gt; {
-  spec('exists', () =&gt; {
-    assert.ok(!!myClass.myMethod);
+<span style="color:#a6e22e">suite</span>(<span style="color:#e6db74">&#39;myClass:myMethod&#39;</span>, () =&gt; {
+  <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;exists&#39;</span>, () =&gt; {
+    <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">ok</span>(<span style="color:#f92672">!!</span><span style="color:#a6e22e">myClass</span>.<span style="color:#a6e22e">myMethod</span>);
   })
-  xspec('i am excluded', () =&gt; {
-    assert.false(true);
-  })
-})
-</code></pre>
-
-<pre><code class="language-javascript">const assert = require('assert');
-const myClass = require('./my-class');
-
-describe('myClass:myMethod', () =&gt; {
-  it('exists', () =&gt; {
-    assert.ok(!!myClass.myMethod);
-  })
-  xit('i am excluded', () =&gt; {
-    assert.false(true);
+  <span style="color:#a6e22e">xspec</span>(<span style="color:#e6db74">&#39;i am excluded&#39;</span>, () =&gt; {
+    <span style="color:#a6e22e">assert</span>.<span style="color:#66d9ef">false</span>(<span style="color:#66d9ef">true</span>);
   })
 })
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">assert</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;assert&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myClass</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./my-class&#39;</span>);
 
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;myClass:myMethod&#39;</span>, () =&gt; {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;exists&#39;</span>, () =&gt; {
+    <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">ok</span>(<span style="color:#f92672">!!</span><span style="color:#a6e22e">myClass</span>.<span style="color:#a6e22e">myMethod</span>);
+  })
+  <span style="color:#a6e22e">xit</span>(<span style="color:#e6db74">&#39;i am excluded&#39;</span>, () =&gt; {
+    <span style="color:#a6e22e">assert</span>.<span style="color:#66d9ef">false</span>(<span style="color:#66d9ef">true</span>);
+  })
+})
+</code></pre></div>
                 </article>
             </section>
             <aside class="side-column">
                 <div class="toc">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#writing-specifications">Writing specifications</a></li>
-<li><a href="#excluding-specifications">Excluding specifications</a></li>
-<li><a href="#remarks-and-caveats">Remarks and caveats</a></li>
-<li><a href="#examples">Examples</a></li>
-</ul>
-</nav>
+    <nav id="TableOfContents"></nav>
 </div>
             </aside>
         </main>

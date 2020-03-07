@@ -71,7 +71,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.39" />
+ <meta name="generator" content="Hugo 0.66.0" />
     
     
 
@@ -191,6 +191,12 @@
                 </li>
                 
                 <li>
+                    <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                        Multiple Files
+                    </a>
+                </li>
+                
+                <li>
                     <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                         setInterval, setTimeout
                     </a>
@@ -242,6 +248,12 @@
             </li>
             
             <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                    Multiple Files
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
                 <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                     setInterval, setTimeout
                 </a>
@@ -258,75 +270,60 @@
                     setInterval, setTimeout
                 </header>
                 <article>
-                    
-
-<p>If for some reasons you need to use <code>setTimeout</code> or <code>setInterval</code> in your tests, you can do
+                    <p>If for some reasons you need to use <code>setTimeout</code> or <code>setInterval</code> in your tests, you can do
 that pretending they&rsquo;re returning a <code>Promise</code>. <strong>Titef</strong> under the hoods overrides this two
 methods replacing them with a Promise-based version which can be used as you did with old ones.</p>
-
 <h1 id="test-with-cli">Test (with CLI)</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/async-timeout.specs.js
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">suite</span>, <span style="color:#a6e22e">spec</span>, <span style="color:#a6e22e">xspec</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;../&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">assert</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;assert&#39;</span>);
 
-<pre><code class="language-javascript">// test/async-timeout.specs.js
+<span style="color:#a6e22e">suite</span>(<span style="color:#e6db74">&#39;AsyncTimeout&#39;</span>, () =&gt; {
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should add one&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 
-const { suite, spec, xspec } = require('../');
-const assert = require('assert');
+        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+            <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        }, <span style="color:#ae81ff">1000</span>)
 
-suite('AsyncTimeout', () =&gt; {
-    spec('should add one', async () =&gt; {
-        let count = 1;
-
-        await setTimeout(() =&gt; {
-            count = count + 1;
-        }, 1000)
-
-        assert.equal(count, 2);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#a6e22e">count</span>, <span style="color:#ae81ff">2</span>);
     })
 
-    xspec('should be ignored', () =&gt; {
-        //whatever
-    })
+    <span style="color:#a6e22e">xspec</span>(<span style="color:#e6db74">&#39;should be ignored&#39;</span>, () =&gt; {
+        <span style="color:#75715e">//whatever
+</span><span style="color:#75715e"></span>    })
 
-    spec('should throw', async () =&gt; {
-        const fn = async () =&gt; {
-            await setTimeout(() =&gt; {
-                throw new Error('asd');
-            }, 1000);
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should throw&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">async</span> () =&gt; {
+            <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;asd&#39;</span>);
+            }, <span style="color:#ae81ff">1000</span>);
         }
 
-        await assert.throwsAsync(fn, Error);
+        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">rejects</span>(<span style="color:#a6e22e">fn</span>, Error);
     })
 })
-</code></pre>
+</code></pre></div><p>Of course you can also <code>clearTimeout</code> and <code>clearInterval</code> as you&rsquo;re used to do:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">timeout</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+  <span style="color:#75715e">// whatever
+</span><span style="color:#75715e"></span>}, <span style="color:#ae81ff">10000</span>);
 
-<p>Of course you can also <code>clearTimeout</code> and <code>clearInterval</code> as you&rsquo;re used to do:</p>
+<span style="color:#a6e22e">clearTimeout</span>(<span style="color:#a6e22e">timeout</span>);
 
-<pre><code class="language-javascript">const timeout = setTimeout(() =&gt; {
-  // whatever
-}, 10000);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(() =&gt; {
+  <span style="color:#75715e">// whatever
+</span><span style="color:#75715e"></span>}, <span style="color:#ae81ff">10000</span>);
 
-clearTimeout(timeout);
-
-const interval = setInterval(() =&gt; {
-  // whatever
-}, 10000);
-
-clearInterval(interval);
-</code></pre>
-
-<p>Launching is hence</p>
-
-<pre><code class="language-bash">$ titef test/async-timeout.specs.js
-</code></pre>
-
-<blockquote>
+<span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">interval</span>);
+</code></pre></div><p>Launching is hence</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ titef test/async-timeout.specs.js
+</code></pre></div><blockquote>
 <h2 id="remark">Remark</h2>
-
 <p><code>setTimeout</code> and <code>setInterval</code> are replaced by Promise-based versions
 only when you run your script using our CLI (as above).</p>
 </blockquote>
-
 <h1 id="test-without-cli">Test (without CLI)</h1>
-
 <p>Unfortunately (read <a href="#remark">here</a>) tests involving <code>setInterval</code> and <code>setTimeout</code> cannot be run outside our CLI tool</p>
 
                 </article>
@@ -334,13 +331,9 @@ only when you run your script using our CLI (as above).</p>
             <aside class="side-column">
                 <div class="toc">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#test-with-cli">Test (with CLI)</a>
-<ul>
-<li><a href="#remark">Remark</a></li>
-</ul></li>
-<li><a href="#test-without-cli">Test (without CLI)</a></li>
-</ul>
+  <ul>
+    <li><a href="#remark">Remark</a></li>
+  </ul>
 </nav>
 </div>
             </aside>

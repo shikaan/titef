@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recipes on titef</title>
@@ -17,7 +17,8 @@
       
       <guid>https://shikaan.github.io/titef/recipes/sync/</guid>
       <description>Code Suppose you have a sync function
-// test/fixtures/sum.js const sum = (a, b) =&amp;gt; { const saneA = Number.parseInt(a, 10); const saneB = Number.parseInt(b, 10); if(Number.isNaN(saneA)) { throw new TypeError(&#39;First argument is not number&#39;) } if(Number.isNaN(saneB)) { throw new TypeError(&#39;Second argument is not number&#39;) } return saneA + saneB; }  Test (with CLI) Then what you need to do is create a test file, for instance sum.specs.js:</description>
+// test/fixtures/sum.js  const sum = (a, b) =&amp;gt; { const saneA = Number.parseInt(a, 10); const saneB = Number.parseInt(b, 10); if(Number.isNaN(saneA)) { throw new TypeError(&amp;#39;First argument is not number&amp;#39;) } if(Number.isNaN(saneB)) { throw new TypeError(&amp;#39;Second argument is not number&amp;#39;) } return saneA + saneB; } Test (with CLI) Then what you need to do is create a test file, for instance sum.specs.js:
+// test/sum.</description>
     </item>
     
     <item>
@@ -27,7 +28,7 @@
       
       <guid>https://shikaan.github.io/titef/recipes/async-promise/</guid>
       <description>Code Suppose you have an async function which returns a Promise.
-// test/fixtures/asyncSum.js const asyncSum = (a, b) =&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { const saneA = Number.parseInt(a, 10); const saneB = Number.parseInt(b, 10); if(Number.isNaN(saneA)) { reject(&#39;First argument is not number&#39;) } if(Number.isNaN(saneB)) { reject(&#39;Second argument is not number&#39;) } resolve(saneA + saneB); }) }  Test (with CLI) Then what you need to do is create a test file, for instance sum-async.</description>
+// test/fixtures/asyncSum.js  const asyncSum = (a, b) =&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { const saneA = Number.parseInt(a, 10); const saneB = Number.parseInt(b, 10); if(Number.isNaN(saneA)) { reject(&amp;#39;First argument is not number&amp;#39;) } if(Number.isNaN(saneB)) { reject(&amp;#39;Second argument is not number&amp;#39;) } resolve(saneA + saneB); }) } Test (with CLI) Then what you need to do is create a test file, for instance sum-async.</description>
     </item>
     
     <item>
@@ -42,13 +43,25 @@ Then what you need to do is create a test file, for instance async-node.specs.js
     </item>
     
     <item>
+      <title>Multiple Files</title>
+      <link>https://shikaan.github.io/titef/recipes/multiple-files/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shikaan.github.io/titef/recipes/multiple-files/</guid>
+      <description>Usually you want to differentiate your test files from the rest of your code. This might happen for example to exclude tests from the final bundle or the code coverage report.
+Common ways of marking test files are: putting them in a test
+Titef CLI has your back in both the cases.
+Using test folder The following command will assume that all the files in the test folders are test files</description>
+    </item>
+    
+    <item>
       <title>setInterval, setTimeout</title>
       <link>https://shikaan.github.io/titef/recipes/interval-timeout/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://shikaan.github.io/titef/recipes/interval-timeout/</guid>
       <description>If for some reasons you need to use setTimeout or setInterval in your tests, you can do that pretending they&amp;rsquo;re returning a Promise. Titef under the hoods overrides this two methods replacing them with a Promise-based version which can be used as you did with old ones.
-Test (with CLI) // test/async-timeout.specs.js const { suite, spec, xspec } = require(&#39;../&#39;); const assert = require(&#39;assert&#39;); suite(&#39;AsyncTimeout&#39;, () =&amp;gt; { spec(&#39;should add one&#39;, async () =&amp;gt; { let count = 1; await setTimeout(() =&amp;gt; { count = count + 1; }, 1000) assert.</description>
+Test (with CLI) // test/async-timeout.specs.js  const { suite, spec, xspec } = require(&amp;#39;../&amp;#39;); const assert = require(&amp;#39;assert&amp;#39;); suite(&amp;#39;AsyncTimeout&amp;#39;, () =&amp;gt; { spec(&amp;#39;should add one&amp;#39;, async () =&amp;gt; { let count = 1; await setTimeout(() =&amp;gt; { count = count + 1; }, 1000) assert.</description>
     </item>
     
   </channel>

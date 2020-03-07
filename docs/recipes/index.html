@@ -71,7 +71,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.39" />
+ <meta name="generator" content="Hugo 0.66.0" />
     
     
     <link href="https://shikaan.github.io/titef/recipes/index.xml" rel="alternate" type="application/rss+xml" title="titef" />
@@ -194,6 +194,12 @@
                 </li>
                 
                 <li>
+                    <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                        Multiple Files
+                    </a>
+                </li>
+                
+                <li>
                     <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                         setInterval, setTimeout
                     </a>
@@ -245,6 +251,12 @@
             </li>
             
             <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                    Multiple Files
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
                 <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
                     setInterval, setTimeout
                 </a>
@@ -261,42 +273,35 @@
                     Recipes
                 </header>
                 <article>
-                        
-
-<p><strong>Titef</strong> was built with a very clear and simple idea in mind: testing is
+                        <p><strong>Titef</strong> was built with a very clear and simple idea in mind: testing is
 boring, thus we needed to make it as <em>easy</em> and as <em>fast</em> as possible.</p>
-
 <p>To make this true we built this collection of recipes meant to be a
-vademecum for developers: most probably after two or three times you
-get the logic behind it and you won&rsquo;t need this anymore.</p>
-
+vademecum for developers: hopefully after a couple of times you won&rsquo;t
+need to read any longer.</p>
 <h1 id="assumptions">Assumptions</h1>
-
 <p><em>Recipes assume</em> the following basic knowledge:</p>
-
 <ul>
 <li>Basic understanding of how <code>Promise</code> works;</li>
 <li>Familiarity with ES6+ syntax;</li>
 </ul>
-
 <p>It&rsquo;s a plus being familiar with <code>async/await</code> flow, but you can easily
 follow recipes without this knowledge. May this be the first good chance
 to learn this pattern?</p>
-
 <p><em>Recipes do not assume</em> anything about the assertion library: as long
 as you&rsquo;re using something which throws an <code>AssertionError</code> when an
 assertion fails, you&rsquo;re good to go.</p>
-
 <p>The following assertion liraries are hence supported:</p>
-
 <ul>
-<li><p><a href="https://nodejs.org/api/assert.html">assert</a>;</p></li>
-
-<li><p><a href="http://chaijs.com">chai</a>;</p></li>
-
-<li><p><a href="http://shouldjs.github.io">should.js</a>;</p></li>
+<li>
+<p><a href="https://nodejs.org/api/assert.html">assert</a>;</p>
+</li>
+<li>
+<p><a href="http://chaijs.com">chai</a>;</p>
+</li>
+<li>
+<p><a href="http://shouldjs.github.io">should.js</a>;</p>
+</li>
 </ul>
-
 <p>If you want to stick with lightness of <strong>Titef</strong> we suggest to use Node
 builtin <code>assert</code> library, but who are we to judge you?</p>
 
@@ -304,11 +309,7 @@ builtin <code>assert</code> library, but who are we to judge you?</p>
             </section>
             <aside class="side-column">
                 <div class="toc">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#assumptions">Assumptions</a></li>
-</ul>
-</nav>
+    <nav id="TableOfContents"></nav>
 </div>
             </aside>
         </main>
