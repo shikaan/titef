@@ -2,7 +2,7 @@ const EventEmitter = require('events');
 const {
   isFunction,
   isObject,
-} = require('./_utils');
+} = require('../utils/index.js');
 
 const { EVENT } = require('./_const');
 

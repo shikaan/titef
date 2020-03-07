@@ -30,6 +30,10 @@ class DirectoryWalker {
    * @returns {boolean}
    */
   hasFileAllowedExtension(filePath) {
+    if (!this.options.extensions.length) {
+      return true;
+    }
+
     const fileBaseName = basename(filePath);
 
     // Not using extname because we might want to capture extensions with

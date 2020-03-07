@@ -1,4 +1,4 @@
-const { isFunction } = require('../_utils');
+const { isFunction } = require('../../utils/index.js');
 const { TEXT_FORMAT } = require('./_const');
 const { NODE_MAJOR_VERSION, RESULT } = require('../_const');
 

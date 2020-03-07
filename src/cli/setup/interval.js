@@ -1,5 +1,5 @@
 /* eslint-disable no-global-assign */
-const { isNumber } = require('../../_utils');
+const { isNumber } = require('../../utils');
 const { ERROR, rejectMap, oldies } = require('./_const');
 
 /**

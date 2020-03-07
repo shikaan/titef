@@ -1,5 +1,5 @@
 const { resolve } = require('path');
-const { existsSync } = require('fs');
+const { existsSync, statSync } = require('fs');
 
 const CLIPrinter = require('./cli-printer');
 const ArgvParser = require('./argv-parser');
@@ -28,7 +28,18 @@ const DirectoryWalker = require('./directory-walker');
   // eslint-disable-next-line global-require
   require('./setup');
   // eslint-disable-next-line global-require
-  require('../index.js');
+  require('../core');
+
+  const rootDirectoryStat = statSync(rootDirectoryPath);
+
+  if (rootDirectoryStat.isFile()) {
+    /**
+     * This is used to prevent webpack to parse the require call
+     */
+    // eslint-disable-next-line no-eval
+    eval('require')(rootDirectoryPath);
+    return;
+  }
 
   const directoryWalkerOptions = {
     extensions: CLIOptions[ArgvParser.CLI_OPTION.EXTENSIONS],

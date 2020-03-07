@@ -25,7 +25,7 @@ methods or put everything in the same class, but the current
 implementation sounded like the cleanest.
 
 ### The chart
-![Event Driven Achitecture](../assets/draw.io/arch.png)
+![Event Driven Achitecture](../../assets/draw.io/arch.png)
 
 Each arrow, excluding the ones coming out from the "sticky notes",
 represents an event whose name is the label of such arrow.
@@ -41,7 +41,7 @@ doing and, if it's not obvious, why do it exists.
 
 #### Database
 
-[Database](./database.js) is an EventEmitter which is responsible for 
+[Database](database.js) is an EventEmitter which is responsible for 
 managing an in memory database whose records contain all the information 
 we need to print reports.
 
@@ -68,7 +68,7 @@ other suites). How would you call a set of record set? :smiley:
 
 #### Process Manager
 
-[Another event emitter](./process-manager.js) whose aim is to handle
+[Another event emitter](process-manager.js) whose aim is to handle
 the current process.
 
 Why do we need this?
@@ -81,7 +81,7 @@ when this occurs, we close the process with the suitable exit code.
 
 #### Reporter
 
-The [reporter](./reporter), as the name suggests, is what is supposed 
+The [reporter](reporter), as the name suggests, is what is supposed 
 to report test results.
 
 As you might have noticed, it has a different structure than the other
@@ -95,7 +95,7 @@ done.
 
 #### Spec
 
-[This](./spec.js) Event Processor emits all the events related to a 
+[This](spec.js) Event Processor emits all the events related to a 
 specification status.
 
 This has two methods `spec` and `xspec` that are publicly exposed and
@@ -103,7 +103,7 @@ documented [here](https://shikaan.github.io/titef).
 
 #### Suite
 
-[This](./suite.js) Event Processor emits all the events related to a 
+[This](suite.js) Event Processor emits all the events related to a 
 suite status.
 
 This exposes the method `suite` that is documented
