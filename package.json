@@ -3,12 +3,15 @@
   "description": "Tiny, zero-dependecies test framework for newbies.",
   "main": "dist/titef.js",
   "scripts": {
-    "test": "node ./bin/titef.js ./test",
-    "lint": "eslint ./lib ./test",
+    "test:integration": "npm run bin -- ./test",
+    "test:unit": "npm run bin -- --extensions test.js ./test",
+    "test": "npm run test:unit && npm run test:integration",
     "lint:fix": "npm run lint -- --fix",
-    "build": "webpack",
+    "lint": "eslint ./lib ./test",
+    "build:cli": "parcel build -t node -d bin -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/cli/index.js",
+    "build:lib": "parcel build -t node -d dist -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/index.js",
+    "build": "npm run build:cli && npm run build:lib",
     "prepush": "npm run lint:fix",
-    "start": "webpack --watch",
     "bin": "node ./bin/titef.js",
     "bin:debug": "node --inspect-brk ./lib/cli/index.js"
   },
@@ -16,13 +19,13 @@
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.14.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
     "husky": "^0.14.3",
-    "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.3.9"
+    "mock-fs": "^4.11.0",
+    "parcel": "^1.12.4",
+    "parcel-plugin-shebang": "^1.2.8"
   },
   "keywords": [
     "javascript",
@@ -41,5 +44,13 @@
   },
   "bin": {
     "titef": "bin/titef.js"
-  }
+  },
+  "shebang": [
+    {
+      "interpreter": "node",
+      "files": [
+        "./lib/cli/index.js"
+      ]
+    }
+  ]
 }

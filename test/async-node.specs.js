@@ -1,9 +1,9 @@
-const { suite, spec, xspec } = require('../');
 const assert = require('assert');
 const { promisify } = require('util');
 
 const { readFile } = require('fs');
 const { join } = require('path');
+const { suite, spec, xspec } = require('../');
 
 suite('AsyncNode', () => {
   const dummyPath = join(__dirname, 'fixtures', 'dummy');
