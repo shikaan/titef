@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta property="description" content="Tiny test framework" />
+    <meta property="og:title" content="Titef - Async (with callbacks)" />
+    <meta property="og:description" content="Tiny test framework" />
+    <meta property="og:image" content="https://shikaan.github.io/titef/images/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shikaan.github.io/titef/recipes/async-callback/" />
+    <meta property="og:locale" content="en_US" />
+
+    <link rel="alternate" hreflang="x-default" href="https://shikaan.github.io/titef/recipes/async-callback/" />
+
+    
+    <title>Titef - Async (with callbacks) </title>
+    
+
+    
+    <link rel="icon" href="https://shikaan.github.io/titef/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin&#43;Sans">
+
+
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<style>
+    :root {
+        --font: "Lato";
+        --heading-font: "Josefin Sans";
+    }
+</style>
+
+
+<link rel="stylesheet" href="https://shikaan.github.io/titef/css/style.css">
+
+
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.66.0" />
+    
+    
+
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112407506-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)};
+      gtag('js', new Date());
+
+      gtag('config', 'UA-112407506-1');
+    </script>
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container">
+        <div class="navbar-header">
+
+            <div class="navbar-brand">
+                
+                <img src="https://shikaan.github.io/titef/images/logo.png" alt="Logo">
+                
+                <span>
+                    Async (with callbacks)
+                </span>
+            </div>
+
+            <button class="navbar-toggle" data-target=".navbar-collapse.menu" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="collapse navbar-collapse menu">
+
+            
+            <ul class="nav navbar-nav">
+                
+                <li>
+                    <a href="/titef/">Home</a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/">Recipes</a>
+                </li>
+                
+                <li>
+                    <a href="/titef/api/">API Docs</a>
+                </li>
+                
+            </ul>
+             
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li class="navbar-icon">
+                    <a href="mailto:spagnolo.manu@gmail.com">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+                <li class="navbar-icon">
+                    <a href="https://github.com/shikaan/titef">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+                
+                <li class="navbar-icon">
+                    <a href="https://www.stackoverflow.com/users/5897505/phugo">
+                        <i class="fa fa-stack-overflow"></i>
+                    </a>
+                </li>
+                
+            </ul>
+            
+
+        </div>
+    </div>
+
+    
+    <div class="container visible-xs">
+        <div class="navbar-header sections-navbar" data-target=".navbar-collapse.sections" data-toggle="collapse">
+            Sections
+        </div>
+
+        <div class="collapse navbar-collapse sections">
+            
+
+            <ul class="nav navbar-nav">
+                
+                <li>
+                    <a href="/titef/recipes/" title="Recipes">
+                        Recipes
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/sync/" title="Sync">
+                        Sync
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/async-promise/" title="Async (with promises)">
+                        Async (with promises)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/async-callback/" title="Async (with callbacks)">
+                        Async (with callbacks)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                        Multiple Files
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
+                        setInterval, setTimeout
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+
+</nav>
+
+    <div class="container">
+        <main class="grid">
+            <aside class="side-column side-column--show-sm">
+                
+
+
+<div class="navigator">
+    
+    <header class="navigator__header">
+        <h2>recipes</h2>
+    </header>
+    <section>
+        <ul class="navigator__list">
+            
+            <li class="navigator__list-item ">
+                <a href="/titef/recipes/" title="Recipes">
+                    Recipes
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/sync/" title="Sync">
+                    Sync
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/async-promise/" title="Async (with promises)">
+                    Async (with promises)
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/async-callback/" title="Async (with callbacks)">
+                    Async (with callbacks)
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/multiple-files/" title="Multiple Files">
+                    Multiple Files
+                </a>
+            </li>
+            
+            <li class="navigator__list-item  navigator__list-item--indent ">
+                <a href="/titef/recipes/interval-timeout/" title="setInterval, setTimeout">
+                    setInterval, setTimeout
+                </a>
+            </li>
+            
+        </ul>
+    </section>
+    
+</div>
+
+            </aside>
+            <section class="main-column">
+                <header class="item-title">
+                    Async (with callbacks)
+                </header>
+                <article>
+                    <h1 id="code">Code</h1>
+<p>Suppose you have an async function with a callback (seriously?!). What we&rsquo;ll be doing
+is simply using the <code>promisify</code> method in Node <code>util</code>library to transform that function
+to a Promise based async function and then use what we already did in Recipe #2.</p>
+<p>Let&rsquo;s take for example Node&rsquo;s <code>fs.readFile</code>.</p>
+<p>Then what you need to do is create a test file, for instance <code>async-node.specs.js</code> (if
+you&rsquo;ll be wondering what <code>spec</code> and <code>suite</code> do, please go <a href="./sync">here</a>; if you&rsquo;ll
+be wondering how to use <code>async</code> go <a href="./async-promise">here</a>).</p>
+<h1 id="test-with-cli">Test (with CLI)</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/async-node.specs.js
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">readFile</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;fs&#39;</span>);
+<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">join</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Please note: Node&#39;s folks made the world a better place adding this
+</span><span style="color:#75715e"> * `promisify` method to the `utils` lib. It will take a callback-based
+</span><span style="color:#75715e"> * method and transforms it into a Promise-based method.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">promisify</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;util&#39;</span>);
+
+<span style="color:#a6e22e">suite</span>(<span style="color:#e6db74">&#39;AsyncNode&#39;</span>, () =&gt; {
+    <span style="color:#75715e">// The dummy file contains only `dummy dummy dummy`
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dummyPath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;fixtures&#39;</span>, <span style="color:#e6db74">&#39;dummy&#39;</span>);
+
+    <span style="color:#75715e">// `promisified` will behave just like a normal Promise-based method
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">promisified</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">promisify</span>(<span style="color:#a6e22e">readFile</span>);
+
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should read dummy file&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#a6e22e">dummyPath</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">deepStrictEqual</span>(<span style="color:#a6e22e">result</span>, <span style="color:#e6db74">&#39;dummy dummy dummy&#39;</span>);
+    })
+
+    <span style="color:#a6e22e">xspec</span>(<span style="color:#e6db74">&#39;ignore this&#39;</span>, () =&gt; {})
+
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should fail assertion&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#a6e22e">dummyPath</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">deepStrictEqual</span>(<span style="color:#a6e22e">result</span>, <span style="color:#e6db74">&#39;dummy! dummy! dummy!&#39;</span>);
+    })
+
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;unhandled&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#e6db74">&#39;not even a path&#39;</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">deepStrictEqual</span>(<span style="color:#a6e22e">result</span>, <span style="color:#e6db74">&#39;dummy! dummy! dummy!&#39;</span>);
+    })
+
+    <span style="color:#a6e22e">spec</span>(<span style="color:#e6db74">&#39;should throw&#39;</span>, <span style="color:#a6e22e">async</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">async</span> () =&gt; {
+            <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promisified</span>(<span style="color:#e6db74">&#39;not even a path&#39;</span>, <span style="color:#e6db74">&#39;utf-8&#39;</span>)
+        };
+
+        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">rejects</span>(<span style="color:#a6e22e">fn</span>, Error);
+    })
+})
+
+</code></pre></div><p>To launch the test you need to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ titef test/async-node.specs.js
+</code></pre></div><h1 id="test-without-cli">Test (without CLI)</h1>
+<p>Again, you&rsquo;re not forced to use our CLI:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test/async-node.specs.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">suite</span>, <span style="color:#a6e22e">spec</span>, <span style="color:#a6e22e">xspec</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;titef&#39;</span>)
+
+<span style="color:#75715e">//... everything else is just like the example above
+</span></code></pre></div><p>And then launching the test is as easy as</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ node test/async-node.specs.js
+</code></pre></div>
+                </article>
+            </section>
+            <aside class="side-column">
+                <div class="toc">
+    <nav id="TableOfContents"></nav>
+</div>
+            </aside>
+        </main>
+    </div>
+
+    <footer class="footer">
+    <p class="footer__copyright small">
+        Developed with ❤ by <a href="mailto:spagnolo.manu@gmail.com">Manuel Spagnolo</a>
+    </p>
+</footer>
+</body>
+
+</html>

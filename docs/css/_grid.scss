@@ -1,0 +1,37 @@
+@import "variables";
+
+.grid {
+  display: flex;
+  text-align: justify;
+
+  & .side-column {
+    flex: 1;
+    margin: 0 $size-6;
+    display: none;
+  }
+
+  & .main-column {
+    flex: 3;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, 'sm')) {
+  .grid {
+    margin-left: -$size-12;
+    margin-right: -$size-12;
+
+    .side-column {
+      &.side-column--show-sm {
+        display: unset;
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, 'lg')) {
+  .grid {
+    .side-column {
+      display: unset;
+    }
+  }
+}

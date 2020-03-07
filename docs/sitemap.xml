@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/features/fast/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/recipes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/features/migration/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/api/spec/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/recipes/sync/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/recipes/async-promise/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/features/ready/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/api/suite/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/recipes/async-callback/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/recipes/multiple-files/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/recipes/interval-timeout/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/features/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/categories/features/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/performance/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/categories/recipes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://shikaan.github.io/titef/</loc>
+  </url>
+  
+</urlset>

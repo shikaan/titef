@@ -1,0 +1,44 @@
+@import "variables";
+
+.navbar-icon {
+  font-size: 125%;
+  display: inline-block !important;
+}
+
+.navbar {
+  &.navbar-default {
+    border-top: $size-1 solid $primary;
+
+    .navbar-brand {
+      font-family: $heading-font-family;
+      padding: $size-1 $size-1 $size-1 $size-3;
+
+      > img {
+        display: inline-block;
+        height: $size-11;
+      }
+
+      > span {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: $size-1*1.5;
+      }
+
+      @media (min-width: map-get($grid-breakpoints, 'sm')) {
+        > span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .sections-navbar {
+    background: $gray-300;
+    color: $light;
+    padding: $size-1;
+  }
+}
+
+.navbar-nav > li > a {
+  color: $dark;
+}
