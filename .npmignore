@@ -1,9 +1,9 @@
-assets
 docs
 .github
 .gitignore
 **/*.md
 test
-webpack.config.js
 .eslintrc.js
 .travis.yml
+.cache
+src
