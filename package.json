@@ -49,7 +49,7 @@
     {
       "interpreter": "node",
       "files": [
-        "./lib/cli/index.js"
+        "./src/cli/index.js"
       ]
     }
   ]
