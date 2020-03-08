@@ -25,7 +25,7 @@ methods or put everything in the same class, but the current
 implementation sounded like the cleanest.
 
 ### The chart
-![Event Driven Achitecture](../../assets/draw.io/arch.png)
+![Event Driven Achitecture](../../docs/draw.io/arch.png)
 
 Each arrow, excluding the ones coming out from the "sticky notes",
 represents an event whose name is the label of such arrow.
