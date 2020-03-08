@@ -1,19 +1,19 @@
 {
   "name": "titef",
   "description": "Tiny, zero-dependecies test framework for newbies.",
-  "main": "dist/titef.js",
+  "main": "lib/titef.js",
   "scripts": {
-    "test:integration": "npm run bin -- ./test",
-    "test:unit": "npm run bin -- --extensions test.js ./test",
+    "test:integration": "npm run bin -- test",
+    "test:unit": "npm run bin -- --extensions test.js test",
     "test": "npm run test:unit && npm run test:integration",
     "lint:fix": "npm run lint -- --fix",
-    "lint": "eslint ./lib ./test",
-    "build:cli": "parcel build -t node -d bin -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/cli/index.js",
-    "build:lib": "parcel build -t node -d dist -o titef.js --no-source-maps --experimental-scope-hoisting ./lib/index.js",
-    "build": "npm run build:cli && npm run build:lib",
+    "lint": "eslint src test",
+    "build:cli": "parcel build -t node -d bin -o titef.js --no-source-maps src/cli/index.js",
+    "build:core": "parcel build -t node -d lib -o titef.js --no-source-maps src/core/index.js",
+    "build": "npm run build:cli && npm run build:core",
     "prepush": "npm run lint:fix",
-    "bin": "node ./bin/titef.js",
-    "bin:debug": "node --inspect-brk ./lib/cli/index.js"
+    "bin": "node src/cli/index.js",
+    "bin:debug": "node --inspect-brk src/cli/index.js"
   },
   "types": "dist/types.d.ts",
   "author": "Manuel Spagnolo <spagnolo.manu@gmail.com>",

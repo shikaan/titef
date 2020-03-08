@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { suite, spec, xspec } = require('../');
+const { suite, spec, xspec } = require('..');
 
 const sum = require('./fixtures/sum');
 

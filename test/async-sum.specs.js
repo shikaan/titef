@@ -18,7 +18,7 @@ suite('Async Sum', () => {
       await sum('foo', 2);
     };
 
-    await assert.throwsAsync(fn, /First argument is not number/);
+    await assert.rejects(fn, /First argument is not number/);
   });
 
   xspec('ignored', () => {

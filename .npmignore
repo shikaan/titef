@@ -1,5 +1,8 @@
-lib
-script
+assets
+docs
+.github
+.gitignore
+**/*.md
 test
 webpack.config.js
 .eslintrc.js
